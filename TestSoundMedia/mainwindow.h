@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QAudioOutput>
 #include <QMediaPlayer>
+#include <QFileDialog>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,13 +21,11 @@ public:
     ~MainWindow();
 
 
-private slots:
-
 
 private:
     Ui::MainWindow *ui;
     QMediaPlayer *player;
-    QAudioOutput *audioOutput;
-
 };
+
 #endif // MAINWINDOW_H
+

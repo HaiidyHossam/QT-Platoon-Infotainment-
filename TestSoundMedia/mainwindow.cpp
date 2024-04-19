@@ -1,8 +1,7 @@
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMediaPlayer>
-#include <QFileDialog>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,17 +10,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Create a QMediaPlayer instance
-
     player = new QMediaPlayer(this);
-    audioOutput = new QAudioOutput(this);
-    player->setAudioOutput(audioOutput);
-    // ..
-    //
-    player->setSource(QUrl::fromLocalFile("C:/Users/Dell/Desktop/song/file.mp3"));
-    audioOutput->setVolume(50);
+
+
+    // Set the media content
+    QString filePath = "/home/haiidy/file.mp3"; // Update the file path as needed
+    player->setMedia(QUrl::fromLocalFile(filePath));
+
+    // Start playback
+    player->setVolume(50);
     player->play();
-
-
 }
 
 MainWindow::~MainWindow()
