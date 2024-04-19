@@ -21,7 +21,7 @@ public:
 
 private slots:
 
-    void getAndDisplayPrayerTimes(const QString &city, const QString &country);
+    void getAndDisplayPrayerTimes(const QString &city);
 
     void checkCurrentTime();
 

@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Fetch and display prayer times
-    getAndDisplayPrayerTimes( "Cairo","Egypt");
+    getAndDisplayPrayerTimes( "Cairo");
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::checkCurrentTime);
     timer->start(60000); // Check every 1minute
@@ -32,9 +32,9 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::getAndDisplayPrayerTimes(const QString &city, const QString &country) {
+void MainWindow::getAndDisplayPrayerTimes(const QString &city) {
     // Construct the URL for the API request
-    QString apiUrl = "https://muslimsalat.com/" + city + ".json?key=YOUR_API_KEY";
+    QString apiUrl = "https://muslimsalat.com/" + city + ".json?key=38562ca872msh5d45bd8ce413582p1bfd2ajsn9b1005826d68";
 
     // Create a QNetworkAccessManager instance to make the request
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
