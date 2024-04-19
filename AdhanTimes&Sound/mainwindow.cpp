@@ -125,12 +125,17 @@ void MainWindow::checkCurrentTime()
         qDebug() << "It's time for adhan!";
         //  adhan sound playback
         player = new QMediaPlayer(this);
-        audioOutput = new QAudioOutput(this);
-        player->setAudioOutput(audioOutput);
 
-        player->setSource(QUrl::fromLocalFile(":/res/ResSound/file.mp3"));
-        audioOutput->setVolume(50);
+
+        // Set the media content
+        QString filePath = ":/res/ResSound/file.mp3"; // Update the file path as needed
+        player->setMedia(QUrl::fromLocalFile(filePath));
+
+        // Start playback
+        player->setVolume(50);
         player->play();
+
+
     } else {
         qDebug() << "m_prayerTimes does not contain current time:" << currentTime;
     }
@@ -138,11 +143,12 @@ void MainWindow::checkCurrentTime()
 
 
 
+
+
+
 void MainWindow::on_pushButton_clicked()
 {
-
     player->stop();
     qDebug() << "Adhan sound stopped.";
-
 }
 

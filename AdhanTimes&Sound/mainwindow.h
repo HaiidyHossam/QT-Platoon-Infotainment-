@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QAudioOutput>
 #include <QMediaPlayer>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +25,8 @@ private slots:
 
     void checkCurrentTime();
 
+
+
     void on_pushButton_clicked();
 
 private:
@@ -35,6 +36,6 @@ private:
 
 
     QMediaPlayer *player;
-    QAudioOutput *audioOutput;
+
 };
 #endif // MAINWINDOW_H
