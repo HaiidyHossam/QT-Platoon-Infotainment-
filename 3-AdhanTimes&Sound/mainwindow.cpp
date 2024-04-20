@@ -11,7 +11,6 @@
 #include <QMap>
 #include <QFileDialog>
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -19,18 +18,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Fetch and display prayer times
-    getAndDisplayPrayerTimes( "Cairo");
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MainWindow::checkCurrentTime);
-    timer->start(60000); // Check every 1minute
-
+    getAndDisplayPrayerTimes("Cairo");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::getAndDisplayPrayerTimes(const QString &city) {
     // Construct the URL for the API request
@@ -50,7 +44,6 @@ void MainWindow::getAndDisplayPrayerTimes(const QString &city) {
             // Read response data
             QByteArray responseData = reply->readAll();
             qDebug() << "Response Data:" << responseData;
-
             // Parse the JSON response
             QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
             QJsonObject jsonObject = jsonResponse.object();
@@ -61,32 +54,20 @@ void MainWindow::getAndDisplayPrayerTimes(const QString &city) {
                 qDebug() << "Error: Empty items array.";
                 return;
             }
-              QJsonObject prayerTimesObject = itemsArray.at(0).toObject();
+            QJsonObject prayerTimesObject = itemsArray.at(0).toObject();
             QString fajrTime = prayerTimesObject.value("fajr").toString();
             QString dhuhrTime = prayerTimesObject.value("dhuhr").toString();
             QString asrTime = prayerTimesObject.value("asr").toString();
             QString maghribTime = prayerTimesObject.value("maghrib").toString();
             QString ishaTime = prayerTimesObject.value("isha").toString();
+            // Parse the JSON response and insert prayer times into the map
 
-            // Parse prayer times and insert into the map
             m_prayerTimes.clear(); // Clear existing data
             m_prayerTimes.insert(QTime::fromString(fajrTime, "h:mm AP"), "Fajr");
             m_prayerTimes.insert(QTime::fromString(dhuhrTime, "h:mm AP"), "Dhuhr");
             m_prayerTimes.insert(QTime::fromString(asrTime, "h:mm AP"), "Asr");
             m_prayerTimes.insert(QTime::fromString(maghribTime, "h:mm AP"), "Maghrib");
-           m_prayerTimes.insert(QTime::fromString(ishaTime, "h:mm AP"), "Isha");
-          //  m_prayerTimes.insert(QTime::fromString("11:33:00 PM", "hh:mm:ss AP"), "Isha"); for test
-
-
-
-
-            // Output prayer times
-            qDebug() << "Prayer Times:";
-            qDebug() << "Fajr:" << fajrTime;
-            qDebug() << "Dhuhr:" << dhuhrTime;
-            qDebug() << "Asr:" << asrTime;
-            qDebug() << "Maghrib:" << maghribTime;
-            qDebug() << "Isha:" << ishaTime;
+            m_prayerTimes.insert(QTime::fromString(ishaTime, "h:mm AP"), "Isha");
 
             // Update UI with prayer times
             ui->label->setText("Fajr: " + fajrTime);
@@ -95,8 +76,21 @@ void MainWindow::getAndDisplayPrayerTimes(const QString &city) {
             ui->label_4->setText("Maghrib: " + maghribTime);
             ui->label_5->setText("Isha: " + ishaTime);
 
+
+            // Output prayer times
+            // Print prayer times
+            qDebug() << "Prayer Times:";
+            for (auto it = m_prayerTimes.constBegin(); it != m_prayerTimes.constEnd(); ++it) {
+                qDebug() << it.key().toString("h:mm AP") << ":" << it.value();
+            }
+
+
+            // Schedule single-shot timer for the next prayer time
+            scheduleNextPrayer();
+
         } else {
-            qDebug() << "Network Error be carefull :" << reply->errorString();
+            qDebug() << "Network Error:" << reply->errorString();
+            // Handle network error
             ui->label->setText("Fajr: 3:49 am");
             ui->label_2->setText("Dhuhr: 11:54 am");
             ui->label_3->setText("Asr: 3:29 pm");
@@ -110,44 +104,67 @@ void MainWindow::getAndDisplayPrayerTimes(const QString &city) {
 }
 
 
-
-
-
-void MainWindow::checkCurrentTime()
+void MainWindow::scheduleNextPrayer()
 {
-    // Get current time
-    QTime currentTime = QTime::currentTime();
-    // Round current time to nearest minute and remove milliseconds
-    currentTime = currentTime.addSecs(-currentTime.second()).addMSecs(-currentTime.msec());
-   // QTime currentTime = QTime::fromString("18:29:00", "h:mm:ss");
+    // Get current date and time
+   QDateTime currentDateTime = QDateTime::currentDateTime();
+   currentDateTime = currentDateTime.addSecs(-currentDateTime.time().second());
+
+   // QDateTime currentDateTime = QDateTime::fromString("2024-04-20 3:28:00", "yyyy-MM-dd H:mm:ss"); //for test
+
+    // Find the next prayer time
+    QDateTime nextPrayerDateTime;
+
+    for (auto it = m_prayerTimes.constBegin(); it != m_prayerTimes.constEnd(); ++it) {
+        QDateTime prayerDateTime(currentDateTime.date(), it.key());
+        if (prayerDateTime > currentDateTime) {
+            nextPrayerDateTime = prayerDateTime;
+            break;
+        }
+    }
+    // If there's no next prayer time for today, schedule for tomorrow's Fajr
+    if (nextPrayerDateTime.isNull()) {
+        QDate tomorrow = currentDateTime.date().addDays(1);
+        nextPrayerDateTime.setDate(tomorrow);
+        nextPrayerDateTime.setTime(m_prayerTimes.firstKey());
+    }
+
+    // Calculate the time until the next prayer (in milliseconds)
+    int msecToNextPrayer = currentDateTime.msecsTo(nextPrayerDateTime);
 
 
-    // Check if m_prayerTimes map contains current time
-    if (m_prayerTimes.contains(currentTime)) {
-        qDebug() << "m_prayerTimes contains current time:" << currentTime;
-        qDebug() << "It's time for adhan!";
-        //  adhan sound playback
-        player = new QMediaPlayer(this);
+    // Print debug information
+    qDebug() << "Current Date and Time:" << currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
 
+    // Schedule single-shot timer for the next prayer time
+    QTimer::singleShot(msecToNextPrayer, [=]() {
+        qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
 
-        // Set the media content:/res/ResSound/file.mp3
+        // Create a new player instance
+        QMediaPlayer *player = new QMediaPlayer(this);
+
+        // Set the media content
         QString filePath = "/home/haiidy/file.mp3"; // Update the file path as needed
-        player->setMedia(QUrl::fromLocalFile(filePath));
+        QUrl mediaUrl = QUrl::fromLocalFile(filePath);
+        player->setMedia(mediaUrl);
 
         // Start playback
         player->setVolume(50);
         player->play();
-    } else {
-        qDebug() << "m_prayerTimes does not contain current time:" << currentTime;
-        qDebug() << "Prayer times in m_prayerTimes map:";
-        for (auto it = m_prayerTimes.constBegin(); it != m_prayerTimes.constEnd(); ++it) {
-            qDebug() << it.key() << ":" << it.value();
-        }
-    }
 
+        // Schedule the next prayer
+        scheduleNextPrayer();
+    });
+
+    // Print debug information
+    qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
 }
+
+
 void MainWindow::on_pushButton_clicked()
 {
-    player->stop();
+
     qDebug() << "Adhan sound stopped.";
+    player->stop();
 }
+

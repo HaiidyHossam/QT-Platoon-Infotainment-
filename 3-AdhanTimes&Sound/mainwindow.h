@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,9 +24,9 @@ private slots:
 
     void getAndDisplayPrayerTimes(const QString &city);
 
-    void checkCurrentTime();
 
 
+    void scheduleNextPrayer();
 
     void on_pushButton_clicked();
 
