@@ -27,18 +27,13 @@ MainWindow::MainWindow(QWidget *parent)
      loadPrayerTimes();
    getAndDisplayPrayerTimes("Cairo");
 
-   /* set widget as stacked widget*/
-     Camera *cameraWidget = new Camera(this);
-     ui->FirstStack->insertWidget(1, cameraWidget);
-     Weather *WeatherWidget = new Weather(this);
-     ui->FirstStack->insertWidget(3, WeatherWidget);
 
 
     /*For Time*/
 
     QTimer *timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(showTime()));
-    timer->start();
+    timer->start(1000);
 
     // For Date
     QDateTime dateTime = QDateTime::currentDateTime();
@@ -277,6 +272,10 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+
+    Camera *cameraWidget = new Camera(this);
+    ui->FirstStack->insertWidget(1, cameraWidget);
+
      ui->FirstStack->setCurrentIndex(1);
 }
 
@@ -291,6 +290,11 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::on_pushButton_7_clicked()
 {
+
+     Weather *WeatherWidget = new Weather(this);
+     ui->FirstStack->insertWidget(3, WeatherWidget);
+
+
      ui->FirstStack->setCurrentIndex(3);
 }
 
