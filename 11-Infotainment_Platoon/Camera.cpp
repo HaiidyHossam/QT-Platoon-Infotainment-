@@ -1,0 +1,47 @@
+// Camera.cpp
+#include "Camera.h"
+#include "ui_Camera.h"
+#include "mainwindow.h"
+
+Camera::Camera(MainWindow *parent) :
+    QDialog(parent),
+    ui(new Ui::Camera),
+    mainWindowPtr(parent) // Store the pointer to MainWindow
+{
+    ui->setupUi(this);
+    camera = new QCamera(this);
+    viewfinder = new QCameraViewfinder(this);
+    QVBoxLayout *centralLayout = new QVBoxLayout(ui->centralWidget);
+    centralLayout->addWidget(viewfinder);
+}
+
+Camera::~Camera()
+{
+    delete ui;
+}
+
+void Camera::startCamera()
+{
+    camera->setViewfinder(viewfinder);
+    camera->start();
+}
+
+void Camera::stopCamera()
+{
+    camera->stop();
+}
+
+void Camera::on_pushButton_clicked()
+{
+    startCamera();
+}
+
+void Camera::on_pushButton_2_clicked()
+{
+    stopCamera();
+}
+
+void Camera::on_pushButton_3_clicked()
+{
+    mainWindowPtr->Back_Home(); // Call the Back_Home() function in the MainWindow instance
+}

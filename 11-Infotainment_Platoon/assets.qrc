@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/toggle-button">
+        <file>off.png</file>
+        <file>on.png</file>
+    </qresource>
+    <qresource prefix="/bluetooth">
+        <file>bluetooth-disabled.png</file>
+        <file>bluetooth-enabled.png</file>
+        <file>bluetooth-connected.png</file>
+    </qresource>
+</RCC>
