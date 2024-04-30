@@ -27,32 +27,59 @@ Window {
             visible: true
             x: mapImage.points[0].x - width / 2
             y: mapImage.points[0].y - height / 2
+
             SequentialAnimation {
                 id: navigationAnimation
                 loops: Animation.Infinite
-                running: true
 
                 PropertyAnimation {
                     target: arrowIcon
                     property: "x"
-                    from: arrowIcon.x
                     to: mapImage.points[1].x - arrowIcon.width / 2
-                    duration: 2000
+                    duration: 1000
                 }
-
                 PropertyAnimation {
                     target: arrowIcon
                     property: "y"
-                    from: arrowIcon.y
                     to: mapImage.points[1].y - arrowIcon.height / 2
-                    duration: 2000
+                    duration: 1000
                 }
-
+                PropertyAnimation {
+                    target: arrowIcon
+                    property: "x"
+                    to: mapImage.points[2].x - arrowIcon.width / 2
+                    duration: 1000
+                }
+                PropertyAnimation {
+                    target: arrowIcon
+                    property: "y"
+                    to: mapImage.points[2].y - arrowIcon.height / 2
+                    duration: 1000
+                }
+                PropertyAnimation {
+                    target: arrowIcon
+                    property: "x"
+                    to: mapImage.points[3].x - arrowIcon.width / 2
+                    duration: 1000
+                }
+                PropertyAnimation {
+                    target: arrowIcon
+                    property: "y"
+                    to: mapImage.points[3].y - arrowIcon.height / 2
+                    duration: 1000
+                }
             }
         }
-    }
 
+        Path {
+            id: navigationPath
+            startX: mapImage.points[0].x
+            startY: mapImage.points[0].y
+        }
+    }
 }
+
+
 
 /*Rectangle{
         id:root
