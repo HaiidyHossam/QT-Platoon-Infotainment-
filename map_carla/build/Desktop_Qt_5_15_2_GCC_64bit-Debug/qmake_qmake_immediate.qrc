@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+<file alias="assets/images/carla_map.jpg">/home/menna/QT_Projects/map_carla/assets/images/carla_map.jpg</file>
+<file alias="assets/icons/arrow.png">/home/menna/QT_Projects/map_carla/assets/icons/arrow.png</file>
+</qresource>
+</RCC>
