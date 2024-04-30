@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     /*settings page */
     //change time
     ui->dateTimeEdit->setDateTime(QDateTime::currentDateTime());
-    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
+    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd HH:mm");
     // Allow user to edit date and time
     ui->dateTimeEdit->setReadOnly(false);
 
@@ -70,11 +70,11 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::showTime()
 {
     QDateTime currentTime = QDateTime::currentDateTime();
-    QString timeText = "<font color='blue'>" + currentTime.toString("h:mm:ss AP") + "</font>"; // Customize the time format and color
+    QString timeText = "<font color='white'>" + currentTime.toString("h:mm AP") + "</font>"; // Customize the time format and color
     ui->Digital_Clock->setText(timeText);
 
     QDateTime dateTime = QDateTime::currentDateTime();
-    QString datetimetext = "<font color='blue'>" + dateTime.toString("dddd, MMMM d, yyyy") + "</font>"; // Customize the date format and color
+    QString datetimetext = "<font color='white'>" + dateTime.toString("dddd, MMMM d, yyyy") + "</font>"; // Customize the date format and color
     ui->DateTime->setText(datetimetext);
 }
 
