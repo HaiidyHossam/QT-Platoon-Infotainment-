@@ -8,77 +8,121 @@ Window {
     height: 670
     visible: true
     title: qsTr("Carla Map")
-    Image {
-        id: mapImage
-        source: "assets/images/carla_map.jpg"
-        anchors.fill:parent
-        property variant points: [
-            {x:100,y:100},
-            {x:300,y:200},
-            {x:500,y:300},
-            {x:700,y:400}
-        ]
+    property int animationIndex: 0
+    Rectangle {
+        id: imageContainer
+        width: 679
+        height: 670
+        Image {
+            id: image
+            source: "assets/images/carla_map.jpg"
+            anchors.fill: parent
+            smooth: true
+            //scale: zoomFactor
+        }
+
+        PathView {
+            id: pathView
+            anchors.fill: parent
+            preferredHighlightBegin: 0.5
+            preferredHighlightEnd: 0.5
+            snapMode: PathView.NoSnap
+            highlightRangeMode: PathView.StrictlyEnforceRange
+            pathItemCount: pathModel.count
+
+            model: ListModel {
+                id: pathModel
+                ListElement { x: 65; y: 42 }
+                ListElement { x: 100; y: 42 }
+                ListElement { x: 190; y: 42 }
+                ListElement { x: 250; y: 42 }
+                ListElement { x: 300; y: 42 }
+                ListElement { x: 350; y: 42 }
+                ListElement { x: 400; y: 42 }
+                ListElement { x: 480; y: 42 }
+                ListElement { x: 550; y: 42 }
+                ListElement { x: 600; y: 42 }
+                ListElement { x: 620; y: 42 }
+                ListElement { x: 620; y: 50 }
+                ListElement { x: 620; y: 100 }
+                ListElement { x: 620; y: 150 }
+                ListElement { x: 620; y: 200 }
+                ListElement { x: 620; y: 250 }
+                ListElement { x: 620; y: 300 }
+                ListElement { x: 620; y: 350 }
+                ListElement { x: 620; y: 400 }
+                ListElement { x: 620; y: 450 }
+                ListElement { x: 620; y: 500 }
+                ListElement { x: 620; y: 550 }
+                ListElement { x: 620; y: 600}
+                ListElement { x: 600; y: 600}
+                ListElement { x: 550; y: 600}
+                ListElement { x: 500; y: 600}
+                ListElement { x: 450; y: 600}
+                ListElement { x: 400; y: 600}
+                ListElement { x: 350; y: 600}
+                ListElement { x: 300; y: 600}
+                ListElement { x: 250; y: 600}
+                ListElement { x: 200; y: 600}
+                ListElement { x: 150; y: 600}
+                ListElement { x: 100; y: 600}
+                ListElement { x: 65; y: 600}
+                ListElement { x: 65; y: 550}
+                ListElement { x: 65; y: 500}
+                ListElement { x: 65; y: 450}
+                ListElement { x: 65; y: 400}
+                ListElement { x: 65; y: 350}
+                ListElement { x: 65; y: 300}
+                ListElement { x: 65; y: 250}
+                ListElement { x: 65; y: 200}
+                ListElement { x: 65; y: 150}
+                ListElement { x: 65; y: 100}
+                ListElement { x: 65; y: 42 }
+            }
+
+            delegate: Rectangle {
+                width: 20
+                height: 20
+                color: "blue"
+                border.color: "white"
+                radius: width / 2
+                x: pathView.model.get(index).x - width / 2
+                y: pathView.model.get(index).y - height / 2
+            }
+
+            focus: true
+            Keys.onRightPressed: pathView.incrementCurrentIndex()
+        }
+
         Rectangle {
-            id: arrowIcon
+            id: movingPoint
             width: 10
             height: 10
             color: "red"
-            radius: 5
-            visible: true
-            x: mapImage.points[0].x - width / 2
-            y: mapImage.points[0].y - height / 2
+            border.color: "white"
+            radius: width / 2
+            x: pathModel.get(animationIndex).x - width / 2
+            y: pathModel.get(animationIndex).y - height / 2
 
-            SequentialAnimation {
-                id: navigationAnimation
-                loops: Animation.Infinite
+            Behavior on x { NumberAnimation { duration: 1000 } }
+            Behavior on y { NumberAnimation { duration: 1000 } }
 
-                PropertyAnimation {
-                    target: arrowIcon
-                    property: "x"
-                    to: mapImage.points[1].x - arrowIcon.width / 2
-                    duration: 1000
-                }
-                PropertyAnimation {
-                    target: arrowIcon
-                    property: "y"
-                    to: mapImage.points[1].y - arrowIcon.height / 2
-                    duration: 1000
-                }
-                PropertyAnimation {
-                    target: arrowIcon
-                    property: "x"
-                    to: mapImage.points[2].x - arrowIcon.width / 2
-                    duration: 1000
-                }
-                PropertyAnimation {
-                    target: arrowIcon
-                    property: "y"
-                    to: mapImage.points[2].y - arrowIcon.height / 2
-                    duration: 1000
-                }
-                PropertyAnimation {
-                    target: arrowIcon
-                    property: "x"
-                    to: mapImage.points[3].x - arrowIcon.width / 2
-                    duration: 1000
-                }
-                PropertyAnimation {
-                    target: arrowIcon
-                    property: "y"
-                    to: mapImage.points[3].y - arrowIcon.height / 2
-                    duration: 1000
+            Timer {
+                interval: 1000
+                repeat: true
+                running: true
+                onTriggered: {
+                    if (animationIndex < pathModel.count - 1)
+                        animationIndex++
+                    else
+                        animationIndex = 0
                 }
             }
         }
-
-        Path {
-            id: navigationPath
-            startX: mapImage.points[0].x
-            startY: mapImage.points[0].y
-        }
     }
-}
 
+
+}
 
 
 /*Rectangle{
