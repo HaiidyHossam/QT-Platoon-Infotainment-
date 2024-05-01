@@ -1,4 +1,6 @@
 import QtQuick 2.15
+import QtMultimedia 5.15
+//import com.company.PlayerController
 Item {
     id:root
 
@@ -7,7 +9,7 @@ Item {
     property alias authorName: authorText.text
     property alias imageSource: albumImage.source
 
-    visible: playerController.currentSongIndex === root.songIndex
+    visible: playercontrollerCPP.currentSongIndex === root.songIndex
     Image{
         id:albumImage
 
@@ -18,6 +20,23 @@ Item {
         width:150
         height:150
     }
+    Video{
+        id:albumVideo
+
+        anchors{
+            verticalCenter: parent.verticalCenter
+            left:parent.left
+        }
+        width:150
+        height:150
+        loops: MediaPlayer.Infinite
+        volume:0
+    }
+
+    Audio{
+
+    }
+
     Text{
         id:titleText
         anchors{

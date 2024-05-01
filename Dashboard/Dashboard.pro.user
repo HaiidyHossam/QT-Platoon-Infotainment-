@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 13.0.0, 2024-04-28T10:57:39. -->
+<!-- Written by QtCreator 13.0.0, 2024-05-01T20:44:01. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -251,10 +251,10 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph dwarf,4096 -F 250</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/menna/QT_Projects/Dashboard/Dashboard.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/menna/QT_Projects/Dashboard/Dashboard.pro</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Dashboard2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/menna/Desktop/QT-Modules_Test/Dashboard/Dashboard.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/menna/Desktop/QT-Modules_Test/Dashboard/Dashboard.pro</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

@@ -1,6 +1,7 @@
 #include <QGuiApplication>
+#include <QQmlContext>
 #include <QQmlApplicationEngine>
-
+#include "PlayerController.h"
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -9,6 +10,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     //app.setWindowIcon(QIcon(""));
     QQmlApplicationEngine engine;
+    PlayerController *playerController = new PlayerController();
+    //qmlRegisterSingletonInstance("com.company.PlayerController", 1, 0, "PlayerController", playerController);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(
         &engine,
@@ -19,7 +22,7 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
+    engine.rootContext()->setContextProperty("playercontrollerCPP",playerController);
     engine.load(url);
-
     return app.exec();
 }

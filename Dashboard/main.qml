@@ -5,8 +5,8 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 2.15
 
 Window {
-    width: 640
-    height: 480
+    width: 1000
+    height: 500
     visible: true
     title: qsTr("Dashboard")
 

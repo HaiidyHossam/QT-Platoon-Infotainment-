@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtMultimedia 5.15
+//import com.company.PlayerController 1.15
 Window {
     width: 640
     height: 480
@@ -84,14 +86,14 @@ Window {
                 width: 64
                 height: 64
                 source: "assets/icons/8207890_back_direction_previous_multimedia_arrows_icon.png"
-                onClicked: playerController.switchToPreviousSong()
+                onClicked: playercontrollerCPP.switchToPreviousSong()
             }
             ImageButton{
                 id:playPauseButton
                 width:64
                 height: 64
-                source: playerController.playing?"assets/icons/8207892_pause_multimedia_stop_ui_icon.png": "assets/icons/8201381_square_stop_multimedia_ui_icon.png"
-                onClicked: playerController.playPause()
+                source: playercontrollerCPP.playing?"assets/icons/8207892_pause_multimedia_stop_ui_icon.png": "assets/icons/8201381_square_stop_multimedia_ui_icon.png"
+                onClicked: playercontrollerCPP.playPause()
             }
             ImageButton{
 
@@ -99,13 +101,13 @@ Window {
                 width: 64
                 height: 64
                 source: "assets/icons/8207891_next_arrows_multimedia_skip_ui_icon.png"
-                onClicked: playerController.switchToNextSong()
+                onClicked: playercontrollerCPP.switchToNextSong()
             }
         }
     }
 
-    QtObject{
-        id:playerController
+    /* QtObject{
+        id:PlayerController
 
         property int currentSongIndex: 0
         property int songCount: 3
@@ -128,6 +130,6 @@ Window {
                 currentSongIndex++
             }
         }
-    }
+    }*/
 
 }
