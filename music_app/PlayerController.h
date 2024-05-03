@@ -24,7 +24,7 @@ signals:
     void playingChanged();
 private:
     int m_currentSongIndex =0;
-    int m_songCount=3;
+    int m_songCount=4;
     bool m_playing=false;
 };
 

@@ -3,7 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Extras 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 2.15
-
+import CustomTypes 1.0
 Window {
     width: 1000
     height: 500
@@ -70,7 +70,7 @@ Window {
                 Component.onCompleted: forceActiveFocus();
             }
         }
-        Keys.onLeftPressed: {
+        /*Keys.onLeftPressed: {
             leftIndicator.on=true;
             rightIndicator.on=false;
         }
@@ -87,6 +87,12 @@ Window {
                 speedometer.acceleration=false;
                 event.accepted=true;
             }
+        }*/
+        MqttClient {
+            id: mqttClient
+            onSpeedChanged: speedometer.value = speed
+            onRpmChanged: rpmMeter.value = rpm
         }
+        Component.onCompleted: mqttClient.startClient()
     }
 }

@@ -122,47 +122,10 @@ Window {
     }
 
 
-}
+    Connections{
+        target:movingPoint
 
-
-/*Rectangle{
-        id:root
-        width: 679
-        height: 670
-        Image{
-            source:"assets/images/carla_map.jpg"
-            width: sourceSize.width
-            height:sourceSize.height
-            Component.onCompleted: console.log(width,height,sourceSize)
-        }
-        Image {
-            id: background
-            source: "assets/images/carla_map.jpg"
-            //width: sourceSize.width
-            //height:sourceSize.height
-            anchors.fill: parent
-        }
-        Image {
-            id: arrowNavigation
-            source: "assets/icons/arrow.png"
-            scale:0.03
-            //anchors.centerIn: parent
-            x:background.width/2
-            y:background.height/2
-            rotation: 90
-        }
-    }*/
-/*background:Image{
-        id:map
-        source: "assets/images/carla_map.jpg"
-        width: sourceSize.width
-        height:sourceSize.height
     }
 
-    forground:Image{
-        id:arrowIcon
-        source: "assets/icons/arrow.png"
-        width: sourceSize.width
-        height:sourceSize.height
-        scale:0.06
-    }*/
+}
+

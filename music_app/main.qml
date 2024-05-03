@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtMultimedia 5.15
-//import com.company.PlayerController 1.15
 Window {
     width: 640
     height: 480
@@ -66,6 +65,19 @@ Window {
             title:"Ana Lak Ala Toul"
             authorName:"Abdel Halim Hafez"
             imageSource:"assets/images/AbdelHaliem.jpg"
+        }
+        AudioInfoBox{
+            id:forthSong
+            anchors{
+                verticalCenter: parent.verticalCenter
+                left:parent.left
+                right: parent.right
+                margins:20
+            }
+            songIndex: 3
+            title:"Ana Negm"
+            authorName:"Amir Eid"
+            imageSource:"assets/images/Carioky.jpg"
         }
     }
     Rectangle{
