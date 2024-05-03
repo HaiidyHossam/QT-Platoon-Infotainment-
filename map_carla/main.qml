@@ -121,11 +121,5 @@ Window {
         }
     }
 
-
-    Connections{
-        target:movingPoint
-
-    }
-
 }
 
