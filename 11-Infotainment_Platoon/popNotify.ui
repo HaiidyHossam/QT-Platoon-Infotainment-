@@ -26,7 +26,7 @@
     <string>It is time for pray</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="Stop_Sound">
    <property name="geometry">
     <rect>
      <x>200</x>

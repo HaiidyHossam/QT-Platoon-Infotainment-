@@ -12,7 +12,6 @@
         <file>cameraon.png</file>
         <file>cameraoff.png</file>
         <file>camera.png</file>
-        <file>bluetooth.png</file>
         <file>bluetooth-off.png</file>
     </qresource>
 </RCC>

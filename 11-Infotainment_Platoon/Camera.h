@@ -25,9 +25,9 @@ public:
     void stopCamera();
 
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
+    void on_Start_Camera_clicked();
+    void on_Stop_Camera_clicked();
+    void on_Back_Home_clicked();
 
 private:
     Ui::Camera *ui;

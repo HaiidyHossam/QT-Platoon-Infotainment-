@@ -20,10 +20,10 @@
    <widget class="QStackedWidget" name="FirstStack">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>30</x>
+      <y>-20</y>
       <width>891</width>
-      <height>611</height>
+      <height>621</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -50,13 +50,13 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
+     <string notr="true">background-color: rgb(119, 118, 123);</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <widget class="QWidget" name="MainButtons">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="Prayer_Button">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -93,7 +93,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="Camera_Button">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -134,9 +134,9 @@
      <widget class="QLabel" name="Digital_Clock">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>70</y>
-        <width>491</width>
+        <x>130</x>
+        <y>110</y>
+        <width>661</width>
         <height>171</height>
        </rect>
       </property>
@@ -152,7 +152,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="Weather_Button">
       <property name="geometry">
        <rect>
         <x>660</x>
@@ -165,7 +165,7 @@
        <string>Weather</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_8">
+     <widget class="QPushButton" name="Bluetooth_Button">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -209,13 +209,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string notr="true">image: url(:/icons/bluetooth.png);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Bluetooth</string>
       </property>
       <property name="flat">
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_9">
+     <widget class="QPushButton" name="Info_Button">
       <property name="geometry">
        <rect>
         <x>620</x>
@@ -240,7 +240,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_10">
+     <widget class="QPushButton" name="Settings_Button">
       <property name="geometry">
        <rect>
         <x>480</x>
@@ -268,79 +268,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <bool>true</bool>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="Camera">
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>440</y>
-        <width>101</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/icons/cameraon.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>440</y>
-        <width>101</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/icons/cameraoff.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QWidget" name="widget" native="true">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>110</y>
-        <width>531</width>
-        <height>231</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_6">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>91</width>
-        <height>621</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/icons/home.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <zorder>pushButton_4</zorder>
-     <zorder>widget</zorder>
-     <zorder>pushButton_5</zorder>
-     <zorder>pushButton_6</zorder>
     </widget>
     <widget class="QWidget" name="PrayerTimes">
      <widget class="QLabel" name="label">
@@ -414,179 +341,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="Back_Home_from_prayer">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>0</x>
         <y>0</y>
         <width>91</width>
         <height>601</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/icons/home.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Weather"/>
-    <widget class="QWidget" name="Settings">
-     <widget class="QDateTimeEdit" name="dateTimeEdit">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>110</y>
-        <width>311</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>28</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>80</y>
-        <width>131</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Change Time:</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_11">
-      <property name="geometry">
-       <rect>
-        <x>-10</x>
-        <y>-10</y>
-        <width>91</width>
-        <height>631</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/icons/home.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_12">
-      <property name="geometry">
-       <rect>
-        <x>620</x>
-        <y>380</y>
-        <width>161</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/icons/save.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Bluetooth">
-     <widget class="QLabel" name="bluetooth_icon">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>180</y>
-        <width>161</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="bluetooth_state">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>280</y>
-        <width>211</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="toggle_bluetooth">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>50</y>
-        <width>91</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QCheckBox::indicator:unchecked {
-    image: url(:/icons/bluetooth-off.png);
-}
-
-
-QCheckBox::indicator:checked {
-    image: url(:/icons/bluetooth.png);
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_13">
-      <property name="geometry">
-       <rect>
-        <x>-10</x>
-        <y>-10</y>
-        <width>111</width>
-        <height>651</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -614,7 +375,7 @@ QCheckBox::indicator:checked {
      <x>0</x>
      <y>0</y>
      <width>912</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

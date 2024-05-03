@@ -1,11 +1,17 @@
-#include "bluetooth.h"
-#include "ui_bluetooth.h"
+
+#include "BBluetooth.h"
+#include "ui_BBluetooth.h"
 #include "mainwindow.h"
-bluetooth::bluetooth(QWidget *parent)
+
+BBluetooth::BBluetooth(MainWindow *parent)
     : QDialog(parent)
-    , ui(new Ui::bluetooth)
+    , ui(new Ui::BBluetooth),
+   mainWindowPtr(parent)
 {
     ui->setupUi(this);
+    /* Bluetooth */
+    timer_bluetooth = new QTimer(this);
+    connect(timer_bluetooth, SIGNAL(timeout()), this, SLOT(update_connected_device()));
     btctlProcess = popen("bluetoothctl", "w");
     if (!btctlProcess) {
         std::cerr << "Failed to open bluetoothctl process!" << std::endl;
@@ -13,27 +19,27 @@ bluetooth::bluetooth(QWidget *parent)
     }
 }
 
-bluetooth::~bluetooth()
+BBluetooth::~BBluetooth()
 {
     closeBluetooth();
     delete ui;
 }
 
 
-void bluetooth::sendCommand(const char* command) {
+void BBluetooth::sendCommand(const char* command) {
     fprintf(btctlProcess, "%s\n", command);
     fflush(btctlProcess);
     std::cout << "Sent command: " << command << std::endl;
 }
 
-void bluetooth::initializeBluetooth() {
+void BBluetooth::initializeBluetooth() {
     sendCommand("power on");
     sendCommand("agent on");
     sendCommand("default-agent");
     sendCommand("discovrable on");
 }
 
-std::string bluetooth::getConnectedDeviceName() {
+std::string BBluetooth::getConnectedDeviceName() {
     // Run hcitool to get connected devices
     FILE* hcitoolProcess = popen("hcitool con", "r");
     if (!hcitoolProcess) {
@@ -78,14 +84,39 @@ std::string bluetooth::getConnectedDeviceName() {
     return connectedDeviceName;
 }
 
-void bluetooth::disableBluetooth() {
+void BBluetooth::disableBluetooth() {
     sendCommand("power off");
 }
 
-void bluetooth::closeBluetooth() {
+void BBluetooth::closeBluetooth() {
     sendCommand("quit");
     pclose(btctlProcess);
 }
 
+void BBluetooth::on_Back_Home_clicked()
+{
+     mainWindowPtr->Back_Home();
+}
 
+void BBluetooth::update_connected_device() {
+    ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
+}
+
+void BBluetooth::on_toggle_bluetooth_clicked()
+{
+    if (ui->toggle_bluetooth->isChecked()) {
+        initializeBluetooth();
+        ui->bluetooth_icon->setPixmap(QPixmap(":/bluetooth/bluetooth-enabled.png"));
+        ui->bluetooth_state->setText("Bluetooth is enabled.\nConnect your device!");
+        //timer->start(5000);
+
+    }
+    else {
+        disableBluetooth();
+        ui->bluetooth_icon->setPixmap(QPixmap(":/bluetooth/bluetooth-disabled.png"));
+        ui->bluetooth_state->setText("Bluetooth is disabled.");
+        ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
+
+    }
+}
 

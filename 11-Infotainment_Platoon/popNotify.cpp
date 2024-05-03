@@ -20,7 +20,7 @@ popNotify::~popNotify()
     delete ui;
 }
 
-void popNotify::on_pushButton_clicked()
+void popNotify::on_Stop_Sound_clicked()
 {
     player->stop();
     close(); // Close the pop-up window

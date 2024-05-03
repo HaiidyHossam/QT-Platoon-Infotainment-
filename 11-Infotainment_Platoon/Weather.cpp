@@ -12,7 +12,7 @@
 Weather::Weather(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::Weather),
-  mainWindowPtr(parent)
+    mainWindowPtr(parent)
 {
     ui->setupUi(this);
     // Create a QNetworkAccessManager instance
@@ -90,8 +90,7 @@ void Weather::displayWeatherData(const QMap<QString, QString> &weatherData)
 
 void Weather::saveWeatherData()
 {
-    // Save the last received weather data to local storage (e.g., using QSettings)
-    // For example:
+
     QSettings settings("MyCompany", "MyApp");
     settings.beginGroup("WeatherData");
     settings.setValue("currentTemperature", lastWeatherData["currentTemperature"]);
@@ -101,8 +100,7 @@ void Weather::saveWeatherData()
 
 void Weather::loadWeatherData()
 {
-    // Load the last received weather data from local storage
-    // For example:
+
     QSettings settings("MyCompany", "MyApp");
     settings.beginGroup("WeatherData");
     lastWeatherData["currentTemperature"] = settings.value("currentTemperature", "- °C").toString();
@@ -111,8 +109,10 @@ void Weather::loadWeatherData()
 }
 
 
-void Weather::on_pushButton_clicked()
+
+
+void Weather::on_Back_Home_clicked()
 {
-     mainWindowPtr->Back_Home();
+      mainWindowPtr->Back_Home();
 }
 

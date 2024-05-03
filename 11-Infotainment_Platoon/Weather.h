@@ -9,7 +9,6 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Weather; }
 QT_END_NAMESPACE
 
-//class QNetworkAccessManager;
 class MainWindow;
 
 class Weather : public QDialog
@@ -17,7 +16,7 @@ class Weather : public QDialog
     Q_OBJECT
 
 public:
-       explicit Weather(MainWindow *parent = nullptr);
+    explicit Weather(MainWindow *parent = nullptr);
     ~Weather();
 
 private slots:
@@ -26,17 +25,17 @@ private slots:
     void saveWeatherData();
     void loadWeatherData();
 
-    void on_pushButton_clicked();
+
+    void on_Back_Home_clicked();
 
 private:
     Ui::Weather *ui;
     QNetworkAccessManager *manager;
     QMap<QString, QString> lastWeatherData;
-       MainWindow *mainWindowPtr;
+    MainWindow *mainWindowPtr;
 };
 
 #endif // WEATHER_H
-
 
 
 

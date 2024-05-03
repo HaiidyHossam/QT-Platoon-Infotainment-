@@ -16,7 +16,7 @@ public:
     ~popNotify();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_Stop_Sound_clicked();
 
 private:
     Ui::popNotify *ui;

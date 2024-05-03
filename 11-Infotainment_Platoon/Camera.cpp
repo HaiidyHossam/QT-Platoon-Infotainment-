@@ -31,17 +31,17 @@ void Camera::stopCamera()
     camera->stop();
 }
 
-void Camera::on_pushButton_clicked()
+void Camera::on_Start_Camera_clicked()
 {
     startCamera();
 }
 
-void Camera::on_pushButton_2_clicked()
+void Camera::on_Stop_Camera_clicked()
 {
     stopCamera();
 }
 
-void Camera::on_pushButton_3_clicked()
+void Camera::on_Back_Home_clicked()
 {
-    mainWindowPtr->Back_Home(); // Call the Back_Home() function in the MainWindow instance
+    mainWindowPtr->Back_Home();
 }

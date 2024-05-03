@@ -9,22 +9,29 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    BBluetooth.cpp \
     Camera.cpp \
+    Info.cpp \
+    Settings.cpp \
     Weather.cpp \
-    bluetooth.cpp \
     main.cpp \
     mainwindow.cpp \
     popNotify.cpp
 
 HEADERS += \
+    BBluetooth.h \
     Camera.h \
+    Info.h \
+    Settings.h \
     Weather.h \
-    bluetooth.h \
     mainwindow.h \
     popNotify.h
 
 FORMS += \
+    BBluetooth.ui \
     Camera.ui \
+    Info.ui \
+    Settings.ui \
     Weather.ui \
     mainwindow.ui \
     popNotify.ui

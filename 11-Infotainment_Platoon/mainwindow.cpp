@@ -1,3 +1,10 @@
+#define Prayer_page 1
+#define Camera_page 2
+#define Weather_page 3
+#define Bluetooth_page 4
+#define Settings_page 5
+#define Info_page 6
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QNetworkAccessManager>
@@ -12,8 +19,9 @@
 #include "popNotify.h"
 #include "Camera.h"
 #include "Weather.h"
+#include "Settings.h"
+#include "Info.h"
 
-//camer2/1 //weather3 //prayer4 //settings_6
 //.............
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,48 +32,45 @@ MainWindow::MainWindow(QWidget *parent)
     //set as default page
     ui->FirstStack->setCurrentIndex(0);
 
-    /* Bluetooth */
-    timer_bluetooth = new QTimer(this);
-    connect(timer_bluetooth, SIGNAL(timeout()), this, SLOT(update_connected_device()));
+
+
+    /* set widget as stacked widget*/
+    Camera *cameraWidget = new Camera(this);
+    ui->FirstStack->insertWidget(Camera_page, cameraWidget);
+    Weather *WeatherWidget = new Weather(this);
+    ui->FirstStack->insertWidget(Weather_page, WeatherWidget);
+    Settings *SettingsWidget = new Settings(this);
+    ui->FirstStack->insertWidget(Settings_page, SettingsWidget);
+    BBluetooth *BluetoothWidget=new BBluetooth(this);
+      ui->FirstStack->insertWidget(Bluetooth_page, BluetoothWidget);
+    Info *InfoWidget=new Info(this);
+    ui->FirstStack->insertWidget(Info_page, InfoWidget);
+
+
+
+
+    qDebug()<<"number is"<< ui->FirstStack->count();
     /*Adhan things*/
 
     loadPrayerTimes();
     getAndDisplayPrayerTimes("Cairo");
 
 
-    /* set widget as stacked widget*/
-    Camera *cameraWidget = new Camera(this);
-    ui->FirstStack->insertWidget(1, cameraWidget);
-    Weather *WeatherWidget = new Weather(this);
-    ui->FirstStack->insertWidget(3, WeatherWidget);
-  /*  bluetooth *BluetoothWidget=new bluetooth(this);
-      ui->FirstStack->insertWidget(7, BluetoothWidget);*/
-
-
-    /*For Time*/
-    /*settings page */
-    //change time
-    ui->dateTimeEdit->setDateTime(QDateTime::currentDateTime());
-    ui->dateTimeEdit->setDisplayFormat("yyyy-MM-dd HH:mm");
-    // Allow user to edit date and time
-    ui->dateTimeEdit->setReadOnly(false);
-
-
-    // Connect the dateTimeChanged signal to the onDateTimeChanged slot
-    connect(ui->dateTimeEdit, &QDateTimeEdit::dateTimeChanged, this, &MainWindow::on_dateTimeEdit_dateTimeChanged);
 
     QTimer *timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(showTime()));
     timer->start(1000);
 
-    /*set icons for button */
-    ui->pushButton_8->setIcon(QIcon(":/new/prefix1/Media/bluetooth_icon.png"));
-    ui->pushButton_8->setIconSize(QSize(150,150));
 
     /*bacground */
     // MainWindow::setStyleSheet("background:url(:/new/prefix1/Media/chris.jpeg)");
 }
 
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
 
 void MainWindow::showTime()
 {
@@ -78,19 +83,11 @@ void MainWindow::showTime()
     ui->DateTime->setText(datetimetext);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
 
-void MainWindow::AdhanPage()
-{
-    ui->FirstStack->setCurrentIndex(4);
-}
 
-void MainWindow::on_pushButton_clicked()
-{
-    AdhanPage();
+void MainWindow::on_Prayer_Button_clicked()
+{ ui->FirstStack->setCurrentIndex(Prayer_page);
+
 }
 
 //***************************************************
@@ -117,8 +114,7 @@ void MainWindow::getAndDisplayPrayerTimes(const QString &city)
             // Parse the JSON response
             QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
             QJsonObject jsonObject = jsonResponse.object();
-
-            // Extract prayer times object from the response
+// Extract prayer times object from the response
             QJsonArray itemsArray = jsonObject.value("items").toArray();
             if (itemsArray.isEmpty()) {
                 qDebug() << "Error: Empty items array.";
@@ -209,7 +205,7 @@ void MainWindow::scheduleNextPrayer()
         scheduleNextPrayer();
     });
 
-    // Print debug information
+
     qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
 }
 
@@ -217,20 +213,19 @@ void MainWindow::displayLastPrayerTimes()
 {
     QSettings settings("MyCompany", "MyApp");
     settings.beginGroup("PrayerTimes");
+QString fajr = settings.value("Fajr", "").toString();
+QString dhuhr = settings.value("Dhuhr", "").toString();
+QString asr = settings.value("Asr", "").toString();
+QString maghrib = settings.value("Maghrib", "").toString();
+QString isha = settings.value("Isha", "").toString();
 
-    QString fajr = settings.value("Fajr", "").toString();
-    QString dhuhr = settings.value("Dhuhr", "").toString();
-    QString asr = settings.value("Asr", "").toString();
-    QString maghrib = settings.value("Maghrib", "").toString();
-    QString isha = settings.value("Isha", "").toString();
+ui->label->setText(fajr);
+ui->label_2->setText(dhuhr);
+ui->label_3->setText(asr);
+ui->label_4->setText(maghrib);
+ui->label_5->setText(isha);
 
-    ui->label->setText(fajr);
-    ui->label_2->setText(dhuhr);
-    ui->label_3->setText(asr);
-    ui->label_4->setText(maghrib);
-    ui->label_5->setText(isha);
-
-    settings.endGroup();
+settings.endGroup();
 }
 
 void MainWindow::savePrayerTimes()
@@ -264,120 +259,47 @@ void MainWindow::loadPrayerTimes()
 
     settings.endGroup();
 }
+//**************************************************************
 
 void MainWindow::Back_Home()
 {
     ui->FirstStack->setCurrentIndex(0);
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_Back_Home_from_prayer_clicked()
 {
     Back_Home();
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    ui->FirstStack->setCurrentIndex(1);
+void MainWindow::on_Camera_Button_clicked()
+{  //camera
+    ui->FirstStack->setCurrentIndex(Camera_page);
 }
 
-void MainWindow::on_pushButton_6_clicked()
+
+void MainWindow::on_Weather_Button_clicked()
 {
-    Back_Home();
+  //weather
+    ui->FirstStack->setCurrentIndex(Weather_page);
 }
 
-void MainWindow::on_pushButton_7_clicked()
-{
-    ui->FirstStack->setCurrentIndex(3);
-}
-
-void MainWindow::on_pushButton_10_clicked()
+void MainWindow::on_Settings_Button_clicked()
 {
     //settings widget
-    ui->FirstStack->setCurrentIndex(6);
-}
-
-void MainWindow::on_pushButton_11_clicked()
-{//.......
-    Back_Home();
-}
-
-void MainWindow::on_dateTimeEdit_dateTimeChanged(const QDateTime &dateTime)
-{
-    this->dateTime=dateTime;
+    ui->FirstStack->setCurrentIndex(Settings_page);
 }
 
 
-
-
-void MainWindow::on_pushButton_12_clicked()
-{
-    // Format the selected date and time
-    QString timeText = dateTime.toString("yyyy-MM-dd hh:mm:ss");
-
-    // Construct the commands
-    QString disableNTPCmd = "sudo timedatectl set-ntp false";
-    QString setTimeCmd = "sudo  timedatectl set-time \"" + timeText + "\"";
-
-    // Convert QString to QByteArray and then to const char*
-    const char *ntpCmd = disableNTPCmd.toUtf8().constData();
-    const char *setTimeCmdStr = setTimeCmd.toUtf8().constData();
-
-    // Execute the commands
-    qDebug() << "Time text: " << timeText;
-    qDebug() << "Disable NTP command: " << disableNTPCmd;
-    qDebug() << "Set time command: " << setTimeCmd;
-
-    // Disable NTP
-    int ntpResult = system(ntpCmd);
-    if (ntpResult != 0) {
-        qDebug() << "Error disabling NTP";
-    } else {
-        qDebug() << "NTP disabled successfully";
-    }
-
-    // Set time
-    int setTimeResult = system(setTimeCmdStr);
-    if (setTimeResult != 0) {
-        qDebug() << "Error setting time";
-    } else {
-        qDebug() << "Time set successfully";
-    }
-}
-
-/* Bluetooooooooooooth*/
-void MainWindow::on_toggle_bluetooth_clicked() {
-    if (ui->toggle_bluetooth->isChecked()) {
-        bbluetooth.initializeBluetooth();
-        ui->bluetooth_icon->setPixmap(QPixmap(":/bluetooth/bluetooth-enabled.png"));
-        ui->bluetooth_state->setText("Bluetooth is enabled.\nConnect your device!");
-        //timer->start(5000);
-
-    }
-    else {
-        bbluetooth.disableBluetooth();
-        ui->bluetooth_icon->setPixmap(QPixmap(":/bluetooth/bluetooth-disabled.png"));
-        ui->bluetooth_state->setText("Bluetooth is disabled.");
-        ui->bluetooth_state->setText(QString::fromStdString(bbluetooth.getConnectedDeviceName()));
-
-    }
-}
-
-void MainWindow::update_connected_device() {
-    ui->bluetooth_state->setText(QString::fromStdString(bbluetooth.getConnectedDeviceName()));
-}
-
-void MainWindow::on_pushButton_8_clicked()
+void MainWindow::on_Bluetooth_Button_clicked()
 {
     //bluetooth icon
-      ui->FirstStack->setCurrentIndex(7);
+    ui->FirstStack->setCurrentIndex(Bluetooth_page);
 
 }
 
 
-
-
-void MainWindow::on_pushButton_13_clicked()
+void MainWindow::on_Info_Button_clicked()
 {
-    Back_Home();
+     ui->FirstStack->setCurrentIndex(Info_page);
 }
 
