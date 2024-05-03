@@ -1,4 +1,5 @@
 #include "MqttClient.h"
+#include <QDebug>
 
 MqttClient::MqttClient(QObject *parent) : QObject(parent)
 {
@@ -16,6 +17,8 @@ MqttClient::~MqttClient()
 
 void MqttClient::messageReceived(const QByteArray &message, const QMqttTopicName &topic)
 {
+    Q_UNUSED(message);
+    Q_UNUSED(topic);
     int x, y;
     emit positionUpdated(x, y);
 }

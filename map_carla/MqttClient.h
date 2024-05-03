@@ -8,8 +8,8 @@ class MqttClient : public QObject
 {
     Q_OBJECT
 public:
-    explicit MqttHandler(QObject *parent = nullptr);
-    ~MqttHandler();
+    explicit MqttClient(QObject *parent = nullptr);
+    ~MqttClient();
 
 signals:
     void positionUpdated(int x, int y);
@@ -20,5 +20,6 @@ private slots:
 private:
     QMqttClient m_client;
 };
+
 
 #endif // MQTTCLIENT_H

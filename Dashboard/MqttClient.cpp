@@ -1,17 +1,22 @@
 #include "MqttClient.h"
 
-MqttClient::MqttClient(QObject *parent) : QObject(parent), MqttClient(new QMqttClient(this))
+MqttClient::MqttClient(QObject *parent) : QObject(parent)
 {
-    connect(MqttClient, &QMqttClient::messageReceived, this, &MqttClient::messageReceived);
+    mqttClient = new QMqttClient(this);
+    connect(mqttClient, &QMqttClient::messageReceived, this, &MqttClient::messageReceived);
 }
 
 void MqttClient::startClient()
 {
-    MqttClient->setHostname("broker.emqx.io");
-    MqttClient->setPort(1883);
-    MqttClient->connectToHost();
-    MqttClient->subscribe("speed_topic", 0);
-    MqttClient->subscribe("rpm_topic", 0);
+    mqttClient->setHostname("broker.emqx.io");
+    mqttClient->setPort(1883);
+    mqttClient->connectToHost();
+
+    QMqttTopicFilter speedTopic("speed_topic");
+    QMqttTopicFilter rpmTopic("rpm_topic");
+
+    mqttClient->subscribe(speedTopic);
+    mqttClient->subscribe(rpmTopic);
 }
 
 void MqttClient::messageReceived(const QByteArray &message, const QMqttTopicName &topic)
