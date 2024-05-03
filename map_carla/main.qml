@@ -2,13 +2,20 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
-
+import CustomTypes 1.0
 Window {
     width: 679
     height: 670
     visible: true
     title: qsTr("Carla Map")
     property int animationIndex: 0
+    MqttClient {
+            id: mqttClient
+            onPositionUpdated: {
+                movingPoint.x = x;
+                movingPoint.y = y;
+            }
+        }
     Rectangle {
         id: imageContainer
         width: 679
