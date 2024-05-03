@@ -1,6 +1,7 @@
 #include "Settings.h"
 #include "ui_Settings.h"
 #include "mainwindow.h"
+#include "Prayer.h"
 Settings::Settings(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::Settings),
@@ -64,7 +65,8 @@ void Settings::on_Save_Changes_clicked()
     } else {
         qDebug() << "Time set successfully";
     }
-    mainWindowPtr->scheduleNextPrayer();
+    prayer=new Prayer();
+    prayer->scheduleNextPrayer();
 
 }
 

@@ -12,6 +12,7 @@ SOURCES += \
     BBluetooth.cpp \
     Camera.cpp \
     Info.cpp \
+    Prayer.cpp \
     Settings.cpp \
     Weather.cpp \
     main.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     BBluetooth.h \
     Camera.h \
     Info.h \
+    Prayer.h \
     Settings.h \
     Weather.h \
     mainwindow.h \
@@ -31,6 +33,7 @@ FORMS += \
     BBluetooth.ui \
     Camera.ui \
     Info.ui \
+    Prayer.ui \
     Settings.ui \
     Weather.ui \
     mainwindow.ui \

@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QDateTime>
 #include "popNotify.h"
+#include "Prayer.h"
 #include <QObject>
 #include <QMediaPlayer>
 #include "BBluetooth.h"
@@ -24,24 +25,15 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
     void Back_Home();
-    void scheduleNextPrayer();
+
 
 
 
 private:
          // Ui::MainWindow *ui;
-    //Adhan *prayerWidget;
+
     MainWindow *mainWindow;
     QMediaPlayer *player;
-    popNotify *popup  ;
-
-    QMap<QTime, QString> m_prayerTimes;
-
-    void getAndDisplayPrayerTimes(const QString &city);
-    //void scheduleNextPrayer();
-    void displayLastPrayerTimes();
-    void savePrayerTimes();
-    void loadPrayerTimes();
 
 private slots:
     void showTime();
@@ -50,15 +42,11 @@ private slots:
 
     void on_Camera_Button_clicked();
 
-
     void on_Weather_Button_clicked();
 
     void on_Settings_Button_clicked();
 
     void on_Bluetooth_Button_clicked();
-
-    void on_Back_Home_from_prayer_clicked();
-
 
     void on_Info_Button_clicked();
 };

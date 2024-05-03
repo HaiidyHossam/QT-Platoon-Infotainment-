@@ -2,7 +2,9 @@
 #define SETTINGS_H
 #include <QDateTime>
 #include <QDialog>
+#include "Prayer.h"
 class MainWindow; // Forward declaration
+//class Prayer;
 namespace Ui {
 class Settings;
 }
@@ -26,6 +28,7 @@ private:
     Ui::Settings *ui;
     QDateTime dateTime;
     MainWindow *mainWindowPtr;
+    Prayer *prayer;
 };
 
 #endif // SETTINGS_H
