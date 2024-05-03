@@ -2,7 +2,7 @@
 
 MqttClient::MqttClient(QObject *parent) : QObject(parent)
 {
-    m_client.setHostname("your_mqtt_broker_address");
+    m_client.setHostname("broker.emqx.io");
     m_client.setPort(1883);
     m_client.connectToHost();
 
