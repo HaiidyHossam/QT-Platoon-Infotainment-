@@ -1007,7 +1007,9 @@ MqttClient.o: MqttClient.cpp MqttClient.h \
 		../../../anaconda3/include/qt/QtCore/qcryptographichash.h \
 		../../../anaconda3/include/qt/QtCore/qdatetime.h \
 		../../../anaconda3/include/qt/QtNetwork/qssl.h \
-		../../../anaconda3/include/qt/QtCore/QFlags
+		../../../anaconda3/include/qt/QtCore/QFlags \
+		../../../anaconda3/include/qt/QtCore/QDataStream \
+		../../../anaconda3/include/qt/QtCore/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MqttClient.o MqttClient.cpp
 
 main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \

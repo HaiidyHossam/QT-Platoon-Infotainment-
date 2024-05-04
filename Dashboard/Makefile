@@ -1061,6 +1061,9 @@ moc_MqttClient.cpp: MqttClient.h \
 		../../../anaconda3/include/qt/QtCore/QSharedPointer \
 		../../../anaconda3/include/qt/QtNetwork/QTcpSocket \
 		../../../anaconda3/include/qt/QtMqtt/qtmqttversion.h \
+		../../../anaconda3/include/qt/QtCore/QMap \
+		../../../anaconda3/include/qt/QtMqtt/QMqttClient \
+		../../../anaconda3/include/qt/QtMqtt/QMqttSubscription \
 		moc_predefs.h \
 		../../../anaconda3/bin/moc
 	/home/menna/anaconda3/bin/moc $(DEFINES) --include /home/menna/Desktop/QT-Modules_Test/Dashboard/moc_predefs.h -I/home/menna/anaconda3/mkspecs/linux-g++ -I/home/menna/Desktop/QT-Modules_Test/Dashboard -I/home/menna/anaconda3/include/qt -I/home/menna/anaconda3/include/qt/QtQuick -I/home/menna/anaconda3/include/qt/QtGui -I/home/menna/anaconda3/include/qt/QtQmlModels -I/home/menna/anaconda3/include/qt/QtQml -I/home/menna/anaconda3/include/qt/QtMqtt -I/home/menna/anaconda3/include/qt/QtNetwork -I/home/menna/anaconda3/include/qt/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include MqttClient.h -o moc_MqttClient.cpp
@@ -1361,12 +1364,17 @@ MqttClient.o: MqttClient.cpp MqttClient.h \
 		../../../anaconda3/include/qt/QtMqtt/qmqttsubscriptionproperties.h \
 		../../../anaconda3/include/qt/QtCore/QSharedPointer \
 		../../../anaconda3/include/qt/QtNetwork/QTcpSocket \
-		../../../anaconda3/include/qt/QtMqtt/qtmqttversion.h
+		../../../anaconda3/include/qt/QtMqtt/qtmqttversion.h \
+		../../../anaconda3/include/qt/QtCore/QMap \
+		../../../anaconda3/include/qt/QtMqtt/QMqttClient \
+		../../../anaconda3/include/qt/QtMqtt/QMqttSubscription
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MqttClient.o MqttClient.cpp
 
-main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
-		../../../anaconda3/include/qt/QtGui/qguiapplication.h \
-		../../../anaconda3/include/qt/QtGui/qtguiglobal.h \
+main.o: main.cpp MqttClient.h \
+		../../../anaconda3/include/qt/QtCore/QObject \
+		../../../anaconda3/include/qt/QtCore/qobject.h \
+		../../../anaconda3/include/qt/QtCore/qobjectdefs.h \
+		../../../anaconda3/include/qt/QtCore/qnamespace.h \
 		../../../anaconda3/include/qt/QtCore/qglobal.h \
 		../../../anaconda3/include/qt/QtCore/qconfig-bootstrapped.h \
 		../../../anaconda3/include/qt/QtCore/qconfig.h \
@@ -1388,21 +1396,16 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qmutex.h \
 		../../../anaconda3/include/qt/QtCore/qnumeric.h \
 		../../../anaconda3/include/qt/QtCore/qversiontagging.h \
-		../../../anaconda3/include/qt/QtGui/qtgui-config.h \
-		../../../anaconda3/include/qt/QtCore/qcoreapplication.h \
+		../../../anaconda3/include/qt/QtCore/qobjectdefs_impl.h \
 		../../../anaconda3/include/qt/QtCore/qstring.h \
 		../../../anaconda3/include/qt/QtCore/qchar.h \
 		../../../anaconda3/include/qt/QtCore/qbytearray.h \
 		../../../anaconda3/include/qt/QtCore/qrefcount.h \
-		../../../anaconda3/include/qt/QtCore/qnamespace.h \
 		../../../anaconda3/include/qt/QtCore/qarraydata.h \
 		../../../anaconda3/include/qt/QtCore/qstringliteral.h \
 		../../../anaconda3/include/qt/QtCore/qstringalgorithms.h \
 		../../../anaconda3/include/qt/QtCore/qstringview.h \
 		../../../anaconda3/include/qt/QtCore/qstringbuilder.h \
-		../../../anaconda3/include/qt/QtCore/qobject.h \
-		../../../anaconda3/include/qt/QtCore/qobjectdefs.h \
-		../../../anaconda3/include/qt/QtCore/qobjectdefs_impl.h \
 		../../../anaconda3/include/qt/QtCore/qlist.h \
 		../../../anaconda3/include/qt/QtCore/qalgorithms.h \
 		../../../anaconda3/include/qt/QtCore/qiterator.h \
@@ -1421,55 +1424,26 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qvarlengtharray.h \
 		../../../anaconda3/include/qt/QtCore/qcontainerfwd.h \
 		../../../anaconda3/include/qt/QtCore/qobject_impl.h \
-		../../../anaconda3/include/qt/QtCore/qeventloop.h \
-		../../../anaconda3/include/qt/QtGui/qwindowdefs.h \
-		../../../anaconda3/include/qt/QtGui/qwindowdefs_win.h \
-		../../../anaconda3/include/qt/QtGui/qinputmethod.h \
-		../../../anaconda3/include/qt/QtCore/qlocale.h \
-		../../../anaconda3/include/qt/QtCore/qvariant.h \
-		../../../anaconda3/include/qt/QtCore/qmap.h \
-		../../../anaconda3/include/qt/QtCore/qdebug.h \
-		../../../anaconda3/include/qt/QtCore/qhash.h \
-		../../../anaconda3/include/qt/QtCore/qtextstream.h \
-		../../../anaconda3/include/qt/QtCore/qiodevice.h \
-		../../../anaconda3/include/qt/QtCore/qset.h \
-		../../../anaconda3/include/qt/QtCore/qcontiguouscache.h \
-		../../../anaconda3/include/qt/QtCore/qsharedpointer.h \
-		../../../anaconda3/include/qt/QtCore/qshareddata.h \
-		../../../anaconda3/include/qt/QtCore/qsharedpointer_impl.h \
-		../../../anaconda3/include/qt/QtCore/qsize.h \
-		../../../anaconda3/include/qt/QtCore/qmargins.h \
-		../../../anaconda3/include/qt/QtQml/QQmlApplicationEngine \
-		../../../anaconda3/include/qt/QtQml/qqmlapplicationengine.h \
-		../../../anaconda3/include/qt/QtQml/qqmlengine.h \
-		../../../anaconda3/include/qt/QtCore/qurl.h \
-		../../../anaconda3/include/qt/QtCore/qurlquery.h \
-		../../../anaconda3/include/qt/QtQml/qjsengine.h \
-		../../../anaconda3/include/qt/QtQml/qjsvalue.h \
-		../../../anaconda3/include/qt/QtQml/qtqmlglobal.h \
-		../../../anaconda3/include/qt/QtQml/qtqml-config.h \
-		../../../anaconda3/include/qt/QtNetwork/qtnetworkglobal.h \
-		../../../anaconda3/include/qt/QtNetwork/qtnetwork-config.h \
-		../../../anaconda3/include/qt/QtQml/qqmldebug.h \
-		../../../anaconda3/include/qt/QtQml/qqml.h \
-		../../../anaconda3/include/qt/QtQml/qqmlprivate.h \
-		../../../anaconda3/include/qt/QtQml/qqmlparserstatus.h \
-		../../../anaconda3/include/qt/QtQml/qqmllist.h \
-		../../../anaconda3/include/qt/QtQml/qqmlpropertyvaluesource.h \
-		../../../anaconda3/include/qt/QtCore/qpointer.h \
-		../../../anaconda3/include/qt/QtCore/qmetaobject.h \
-		../../../anaconda3/include/qt/QtQml/qqmlerror.h \
-		../../../anaconda3/include/qt/QtQml/QQmlContext \
-		../../../anaconda3/include/qt/QtQml/qqmlcontext.h \
-		MqttClient.h \
-		../../../anaconda3/include/qt/QtCore/QObject \
 		../../../anaconda3/include/qt/QtMqtt/QtMqtt \
 		../../../anaconda3/include/qt/QtMqtt/QtMqttDepends \
 		../../../anaconda3/include/qt/QtCore/QtCore \
 		../../../anaconda3/include/qt/QtCore/QtCoreDepends \
 		../../../anaconda3/include/qt/QtCore/qabstractanimation.h \
 		../../../anaconda3/include/qt/QtCore/qabstracteventdispatcher.h \
+		../../../anaconda3/include/qt/QtCore/qeventloop.h \
 		../../../anaconda3/include/qt/QtCore/qabstractitemmodel.h \
+		../../../anaconda3/include/qt/QtCore/qvariant.h \
+		../../../anaconda3/include/qt/QtCore/qmap.h \
+		../../../anaconda3/include/qt/QtCore/qdebug.h \
+		../../../anaconda3/include/qt/QtCore/qhash.h \
+		../../../anaconda3/include/qt/QtCore/qtextstream.h \
+		../../../anaconda3/include/qt/QtCore/qiodevice.h \
+		../../../anaconda3/include/qt/QtCore/qlocale.h \
+		../../../anaconda3/include/qt/QtCore/qshareddata.h \
+		../../../anaconda3/include/qt/QtCore/qset.h \
+		../../../anaconda3/include/qt/QtCore/qcontiguouscache.h \
+		../../../anaconda3/include/qt/QtCore/qsharedpointer.h \
+		../../../anaconda3/include/qt/QtCore/qsharedpointer_impl.h \
 		../../../anaconda3/include/qt/QtCore/qabstractnativeeventfilter.h \
 		../../../anaconda3/include/qt/QtCore/qabstractproxymodel.h \
 		../../../anaconda3/include/qt/QtCore/qabstractstate.h \
@@ -1488,6 +1462,8 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qdatetime.h \
 		../../../anaconda3/include/qt/QtCore/qcborcommon.h \
 		../../../anaconda3/include/qt/QtCore/qregularexpression.h \
+		../../../anaconda3/include/qt/QtCore/qurl.h \
+		../../../anaconda3/include/qt/QtCore/qurlquery.h \
 		../../../anaconda3/include/qt/QtCore/quuid.h \
 		../../../anaconda3/include/qt/QtCore/qcbormap.h \
 		../../../anaconda3/include/qt/QtCore/qcborstream.h \
@@ -1497,6 +1473,7 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qcollator.h \
 		../../../anaconda3/include/qt/QtCore/qcommandlineoption.h \
 		../../../anaconda3/include/qt/QtCore/qcommandlineparser.h \
+		../../../anaconda3/include/qt/QtCore/qcoreapplication.h \
 		../../../anaconda3/include/qt/QtCore/qconcatenatetablesproxymodel.h \
 		../../../anaconda3/include/qt/QtCore/qcryptographichash.h \
 		../../../anaconda3/include/qt/QtCore/qdatastream.h \
@@ -1537,8 +1514,10 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qlinkedlist.h \
 		../../../anaconda3/include/qt/QtCore/qlockfile.h \
 		../../../anaconda3/include/qt/QtCore/qloggingcategory.h \
+		../../../anaconda3/include/qt/QtCore/qmargins.h \
 		../../../anaconda3/include/qt/QtCore/qmath.h \
 		../../../anaconda3/include/qt/QtCore/qmessageauthenticationcode.h \
+		../../../anaconda3/include/qt/QtCore/qmetaobject.h \
 		../../../anaconda3/include/qt/QtCore/qmimedata.h \
 		../../../anaconda3/include/qt/QtCore/qmimedatabase.h \
 		../../../anaconda3/include/qt/QtCore/qmimetype.h \
@@ -1547,6 +1526,7 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qparallelanimationgroup.h \
 		../../../anaconda3/include/qt/QtCore/qpauseanimation.h \
 		../../../anaconda3/include/qt/QtCore/qplugin.h \
+		../../../anaconda3/include/qt/QtCore/qpointer.h \
 		../../../anaconda3/include/qt/QtCore/qpluginloader.h \
 		../../../anaconda3/include/qt/QtCore/qprocess.h \
 		../../../anaconda3/include/qt/QtCore/qpropertyanimation.h \
@@ -1555,6 +1535,7 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qrandom.h \
 		../../../anaconda3/include/qt/QtCore/qreadwritelock.h \
 		../../../anaconda3/include/qt/QtCore/qrect.h \
+		../../../anaconda3/include/qt/QtCore/qsize.h \
 		../../../anaconda3/include/qt/QtCore/qresource.h \
 		../../../anaconda3/include/qt/QtCore/qsavefile.h \
 		../../../anaconda3/include/qt/QtCore/qscopedvaluerollback.h \
@@ -1594,6 +1575,8 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtCore/qtcoreversion.h \
 		../../../anaconda3/include/qt/QtNetwork/QtNetwork \
 		../../../anaconda3/include/qt/QtNetwork/QtNetworkDepends \
+		../../../anaconda3/include/qt/QtNetwork/qtnetworkglobal.h \
+		../../../anaconda3/include/qt/QtNetwork/qtnetwork-config.h \
 		../../../anaconda3/include/qt/QtNetwork/qabstractnetworkcache.h \
 		../../../anaconda3/include/qt/QtNetwork/qnetworkrequest.h \
 		../../../anaconda3/include/qt/QtCore/QSharedDataPointer \
@@ -1669,7 +1652,33 @@ main.o: main.cpp ../../../anaconda3/include/qt/QtGui/QGuiApplication \
 		../../../anaconda3/include/qt/QtMqtt/qmqttsubscriptionproperties.h \
 		../../../anaconda3/include/qt/QtCore/QSharedPointer \
 		../../../anaconda3/include/qt/QtNetwork/QTcpSocket \
-		../../../anaconda3/include/qt/QtMqtt/qtmqttversion.h
+		../../../anaconda3/include/qt/QtMqtt/qtmqttversion.h \
+		../../../anaconda3/include/qt/QtCore/QMap \
+		../../../anaconda3/include/qt/QtMqtt/QMqttClient \
+		../../../anaconda3/include/qt/QtMqtt/QMqttSubscription \
+		../../../anaconda3/include/qt/QtGui/QGuiApplication \
+		../../../anaconda3/include/qt/QtGui/qguiapplication.h \
+		../../../anaconda3/include/qt/QtGui/qtguiglobal.h \
+		../../../anaconda3/include/qt/QtGui/qtgui-config.h \
+		../../../anaconda3/include/qt/QtGui/qwindowdefs.h \
+		../../../anaconda3/include/qt/QtGui/qwindowdefs_win.h \
+		../../../anaconda3/include/qt/QtGui/qinputmethod.h \
+		../../../anaconda3/include/qt/QtQml/QQmlApplicationEngine \
+		../../../anaconda3/include/qt/QtQml/qqmlapplicationengine.h \
+		../../../anaconda3/include/qt/QtQml/qqmlengine.h \
+		../../../anaconda3/include/qt/QtQml/qjsengine.h \
+		../../../anaconda3/include/qt/QtQml/qjsvalue.h \
+		../../../anaconda3/include/qt/QtQml/qtqmlglobal.h \
+		../../../anaconda3/include/qt/QtQml/qtqml-config.h \
+		../../../anaconda3/include/qt/QtQml/qqmldebug.h \
+		../../../anaconda3/include/qt/QtQml/qqml.h \
+		../../../anaconda3/include/qt/QtQml/qqmlprivate.h \
+		../../../anaconda3/include/qt/QtQml/qqmlparserstatus.h \
+		../../../anaconda3/include/qt/QtQml/qqmllist.h \
+		../../../anaconda3/include/qt/QtQml/qqmlpropertyvaluesource.h \
+		../../../anaconda3/include/qt/QtQml/qqmlerror.h \
+		../../../anaconda3/include/qt/QtQml/QQmlContext \
+		../../../anaconda3/include/qt/QtQml/qqmlcontext.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 qrc_qml.o: qrc_qml.cpp 

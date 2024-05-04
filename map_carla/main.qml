@@ -10,12 +10,12 @@ Window {
     title: qsTr("Carla Map")
     property int animationIndex: 0
     MqttClient {
-            id: mqttClient
-            onPositionUpdated: {
-                movingPoint.x = x;
-                movingPoint.y = y;
-            }
+        id: mqttClient
+        onPositionUpdated: {
+            movingPoint.x = x;
+            movingPoint.y = y;
         }
+    }
     Rectangle {
         id: imageContainer
         width: 679

@@ -1,7 +1,8 @@
+#include "MqttClient.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "MqttClient.h"
+
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -9,6 +10,8 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
     qmlRegisterType<MqttClient>("CustomTypes", 1, 0, "MqttClient");
+    //MqttClient *mqttclient = new MqttClient();
+    //qmlRegisterSingletonInstance("CustomTypes", 1, 0, "MqttClient", mqttclient);
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(

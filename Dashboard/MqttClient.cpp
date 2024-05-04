@@ -1,22 +1,27 @@
 #include "MqttClient.h"
-
-MqttClient::MqttClient(QObject *parent) : QObject(parent)
-{
-    mqttClient = new QMqttClient(this);
-    connect(mqttClient, &QMqttClient::messageReceived, this, &MqttClient::messageReceived);
-}
-
-void MqttClient::startClient()
+#include <QDebug>
+MqttClient::MqttClient(QObject *parent) : QObject(parent), mqttClient(new QMqttClient(this))
 {
     mqttClient->setHostname("broker.emqx.io");
     mqttClient->setPort(1883);
     mqttClient->connectToHost();
-
-    QMqttTopicFilter speedTopic("speed_topic");
-    QMqttTopicFilter rpmTopic("rpm_topic");
-
-    mqttClient->subscribe(speedTopic);
-    mqttClient->subscribe(rpmTopic);
+    connect(mqttClient, &QMqttClient::stateChanged, this, &MqttClient::mqttStateChanged);
+    connect(mqttClient, &QMqttClient::messageReceived, this, &MqttClient::messageReceived);
+}
+void MqttClient::mqttStateChanged(QMqttClient::ClientState state)
+{
+    switch (state) {
+    case QMqttClient::Connected:
+        qDebug() << "Connected to MQTT broker";
+        mqttClient->subscribe(QMqttTopicFilter("speed_topic"), 0);
+        mqttClient->subscribe(QMqttTopicFilter("rpm_topic"), 0);        // Subscribe to sensor data topic
+        break;
+    case QMqttClient::Disconnected:
+        qDebug() << "Disconnected from MQTT broker";
+        break;
+    default:
+        break;
+    }
 }
 
 void MqttClient::messageReceived(const QByteArray &message, const QMqttTopicName &topic)

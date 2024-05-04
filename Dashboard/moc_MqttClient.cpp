@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MqttClient_t {
-    QByteArrayData data[11];
-    char stringdata0[103];
+    QByteArrayData data[13];
+    char stringdata0[139];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,16 +38,20 @@ QT_MOC_LITERAL(2, 24, 0), // ""
 QT_MOC_LITERAL(3, 25, 5), // "speed"
 QT_MOC_LITERAL(4, 31, 10), // "rpmChanged"
 QT_MOC_LITERAL(5, 42, 3), // "rpm"
-QT_MOC_LITERAL(6, 46, 15), // "messageReceived"
-QT_MOC_LITERAL(7, 62, 7), // "message"
-QT_MOC_LITERAL(8, 70, 14), // "QMqttTopicName"
-QT_MOC_LITERAL(9, 85, 5), // "topic"
-QT_MOC_LITERAL(10, 91, 11) // "startClient"
+QT_MOC_LITERAL(6, 46, 16), // "mqttStateChanged"
+QT_MOC_LITERAL(7, 63, 24), // "QMqttClient::ClientState"
+QT_MOC_LITERAL(8, 88, 5), // "state"
+QT_MOC_LITERAL(9, 94, 15), // "messageReceived"
+QT_MOC_LITERAL(10, 110, 7), // "message"
+QT_MOC_LITERAL(11, 118, 14), // "QMqttTopicName"
+QT_MOC_LITERAL(12, 133, 5) // "topic"
 
     },
     "MqttClient\0speedChanged\0\0speed\0"
-    "rpmChanged\0rpm\0messageReceived\0message\0"
-    "QMqttTopicName\0topic\0startClient"
+    "rpmChanged\0rpm\0mqttStateChanged\0"
+    "QMqttClient::ClientState\0state\0"
+    "messageReceived\0message\0QMqttTopicName\0"
+    "topic"
 };
 #undef QT_MOC_LITERAL
 
@@ -69,20 +73,16 @@ static const uint qt_meta_data_MqttClient[] = {
        4,    1,   37,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    2,   40,    2, 0x08 /* Private */,
-
- // methods: name, argc, parameters, tag, flags
-      10,    0,   45,    2, 0x02 /* Public */,
+       6,    1,   40,    2, 0x0a /* Public */,
+       9,    2,   43,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    5,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QByteArray, 0x80000000 | 8,    7,    9,
-
- // methods: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, QMetaType::QByteArray, 0x80000000 | 11,   10,   12,
 
        0        // eod
 };
@@ -95,14 +95,21 @@ void MqttClient::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->speedChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 1: _t->rpmChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 2: _t->messageReceived((*reinterpret_cast< const QByteArray(*)>(_a[1])),(*reinterpret_cast< const QMqttTopicName(*)>(_a[2]))); break;
-        case 3: _t->startClient(); break;
+        case 2: _t->mqttStateChanged((*reinterpret_cast< QMqttClient::ClientState(*)>(_a[1]))); break;
+        case 3: _t->messageReceived((*reinterpret_cast< const QByteArray(*)>(_a[1])),(*reinterpret_cast< const QMqttTopicName(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QMqttClient::ClientState >(); break;
+            }
+            break;
+        case 3:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 1:

@@ -13,6 +13,9 @@ Window {
     ValueSource{
         id:valueSource
     }
+    MqttClient {
+        id: mqttClient
+    }
 
     Rectangle {
         id: dashboard
@@ -53,6 +56,13 @@ Window {
                 height:dashboard.height*0.5
                 maximumValue: 5000
                 style: RPMMeterStyle{}
+
+                Connections {
+                    target: mqttClient
+                    onRpmChanged: {
+                        rpmMeter.value = rpm;
+                    }
+                }
             }
             CircularGauge{
                 id: speedometer
@@ -68,6 +78,12 @@ Window {
                     }
                 }
                 Component.onCompleted: forceActiveFocus();
+                Connections {
+                    target: mqttClient
+                    onSpeedChanged: {
+                        speedometer.value = speed;
+                    }
+                }
             }
         }
         /*Keys.onLeftPressed: {
@@ -88,11 +104,10 @@ Window {
                 event.accepted=true;
             }
         }*/
-        MqttClient {
-            id: mqttClient
-            onSpeedChanged: speedometer.value = speed
-            onRpmChanged: rpmMeter.value = rpm
-        }
-        Component.onCompleted: mqttClient.startClient()
     }
+    /*MqttClient {
+        id: mqttClient
+        onSpeedChanged: speedometer.value = speed
+        onRpmChanged: rpmMeter.value = rpm
+    }*/
 }
