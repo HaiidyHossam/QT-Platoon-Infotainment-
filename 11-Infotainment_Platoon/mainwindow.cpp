@@ -4,6 +4,8 @@
 #define Bluetooth_page 5
 #define Settings_page 4
 #define Info_page 6
+#define Music_page 7
+#define Video_page 8
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -16,7 +18,8 @@
 #include "Settings.h"
 #include "Info.h"
 #include "Prayer.h"
-
+#include "mp3.h"
+#include "mp4.h"
 //.............
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->FirstStack->insertWidget(Info_page, InfoWidget);
     Prayer *prayerWidget = new Prayer(this);
     ui->FirstStack->insertWidget(Prayer_page, prayerWidget);
+    Mp3 *MusicWidget = new Mp3(this);
+    ui->FirstStack->insertWidget(Music_page, MusicWidget);
+    Mp4 *VideoWidget = new Mp4(this);
+    ui->FirstStack->insertWidget(Video_page, VideoWidget);
 
 
     qDebug()<<"number is"<< ui->FirstStack->count();
@@ -111,5 +118,19 @@ void MainWindow::on_Bluetooth_Button_clicked()
 void MainWindow::on_Info_Button_clicked()
 {
      ui->FirstStack->setCurrentIndex(Info_page);
+}
+
+
+
+
+void MainWindow::on_Music_Button_clicked()
+{
+      ui->FirstStack->setCurrentIndex(Music_page);
+}
+
+
+void MainWindow::on_Video_Button_clicked()
+{
+      ui->FirstStack->setCurrentIndex(Video_page);
 }
 

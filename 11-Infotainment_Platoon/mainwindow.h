@@ -49,5 +49,8 @@ private slots:
     void on_Bluetooth_Button_clicked();
 
     void on_Info_Button_clicked();
+
+    void on_Music_Button_clicked();
+    void on_Video_Button_clicked();
 };
 #endif // MAINWINDOW_H

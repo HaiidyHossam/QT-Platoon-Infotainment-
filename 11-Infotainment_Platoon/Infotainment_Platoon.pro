@@ -15,8 +15,11 @@ SOURCES += \
     Prayer.cpp \
     Settings.cpp \
     Weather.cpp \
+    flash.cpp \
     main.cpp \
     mainwindow.cpp \
+    mp3.cpp \
+    mp4.cpp \
     popNotify.cpp
 
 HEADERS += \
@@ -26,7 +29,10 @@ HEADERS += \
     Prayer.h \
     Settings.h \
     Weather.h \
+    flash.h \
     mainwindow.h \
+    mp3.h \
+    mp4.h \
     popNotify.h
 
 FORMS += \
@@ -37,6 +43,8 @@ FORMS += \
     Settings.ui \
     Weather.ui \
     mainwindow.ui \
+    mp3.ui \
+    mp4.ui \
     popNotify.ui
 
 # Default rules for deployment.
