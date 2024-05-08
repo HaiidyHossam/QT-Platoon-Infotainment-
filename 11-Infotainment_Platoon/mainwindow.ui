@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>912</width>
-    <height>661</height>
+    <width>1069</width>
+    <height>713</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
    <widget class="QStackedWidget" name="FirstStack">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>-20</y>
-      <width>891</width>
-      <height>621</height>
+      <x>10</x>
+      <y>0</y>
+      <width>1031</width>
+      <height>651</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -34,8 +34,8 @@
     </property>
     <property name="maximumSize">
      <size>
-      <width>891</width>
-      <height>621</height>
+      <width>2000</width>
+      <height>2000</height>
      </size>
     </property>
     <property name="font">
@@ -50,7 +50,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(119, 118, 123);</string>
+     <string notr="true">background-color: rgb(0, 0, 0);</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -59,8 +59,8 @@
      <widget class="QPushButton" name="Prayer_Button">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>480</y>
+        <x>590</x>
+        <y>510</y>
         <width>91</width>
         <height>91</height>
        </rect>
@@ -72,7 +72,7 @@
        <enum>Qt::NoContextMenu</enum>
       </property>
       <property name="acceptDrops">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="toolTip">
        <string notr="true"/>
@@ -84,7 +84,7 @@
        <string notr="true"/>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/icons/prayer.png);</string>
+       <string notr="true">image: url(:/icons/icons/prayer.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -96,8 +96,8 @@
      <widget class="QPushButton" name="Camera_Button">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>480</y>
+        <x>480</x>
+        <y>510</y>
         <width>91</width>
         <height>91</height>
        </rect>
@@ -105,8 +105,11 @@
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/icons/camera.png);</string>
+       <string notr="true">image: url(:/icons/icons/camera.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -161,8 +164,17 @@
         <height>101</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
       <property name="text">
        <string>Weather</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="Bluetooth_Button">
@@ -171,10 +183,10 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>480</y>
+        <x>710</x>
+        <y>510</y>
         <width>91</width>
-        <height>81</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -192,6 +204,9 @@
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
       <property name="toolTip">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -206,10 +221,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/icons/bluetooth.png);</string>
+       <string notr="true">image: url(:/icons/icons/bluetooth.png);</string>
       </property>
       <property name="text">
-       <string>Bluetooth</string>
+       <string/>
       </property>
       <property name="flat">
        <bool>true</bool>
@@ -218,20 +233,23 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="Info_Button">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>480</y>
-        <width>81</width>
-        <height>81</height>
+        <x>930</x>
+        <y>510</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/icons/info.png);</string>
+       <string notr="true">image: url(:/icons/icons/info.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -243,20 +261,23 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="Settings_Button">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>480</y>
-        <width>81</width>
-        <height>81</height>
+        <x>820</x>
+        <y>510</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">image: url(:/icons/settings.png);</string>
+       <string notr="true">image: url(:/icons/icons/settings.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -271,27 +292,48 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="Music_Button">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>380</y>
-        <width>121</width>
-        <height>71</height>
+        <x>370</x>
+        <y>510</y>
+        <width>101</width>
+        <height>91</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/icons/icons/music.png);</string>
+      </property>
       <property name="text">
-       <string>Music</string>
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="Video_Button">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>380</y>
-        <width>121</width>
-        <height>81</height>
+        <x>240</x>
+        <y>500</y>
+        <width>111</width>
+        <height>101</height>
        </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
       </property>
       <property name="text">
        <string>Videos</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -302,8 +344,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>912</width>
-     <height>23</height>
+     <width>1069</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

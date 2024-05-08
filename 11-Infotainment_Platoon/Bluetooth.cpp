@@ -1,6 +1,6 @@
 
-#include "BBluetooth.h"
-#include "ui_BBluetooth.h"
+#include "Bluetooth.h"
+#include "ui_Bluetooth.h"
 #include "mainwindow.h"
 
 BBluetooth::BBluetooth(MainWindow *parent)

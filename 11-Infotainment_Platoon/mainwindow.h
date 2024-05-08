@@ -8,7 +8,7 @@
 #include "Prayer.h"
 #include <QObject>
 #include <QMediaPlayer>
-#include "BBluetooth.h"
+#include "Bluetooth.h"
 #include "Weather.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {

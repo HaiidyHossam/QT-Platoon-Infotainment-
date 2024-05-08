@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
-    <height>471</height>
+    <width>1105</width>
+    <height>642</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,14 +55,29 @@
   <widget class="QPushButton" name="Back_Home">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>370</y>
-     <width>121</width>
-     <height>61</height>
+     <x>0</x>
+     <y>-10</y>
+     <width>101</width>
+     <height>661</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/home.png);</string>
+   </property>
    <property name="text">
-    <string>Home</string>
+    <string/>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

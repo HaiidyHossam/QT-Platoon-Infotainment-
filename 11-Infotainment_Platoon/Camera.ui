@@ -29,7 +29,7 @@
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/cameraon.png);</string>
+    <string notr="true">image: url(:/icons/icons/cameraon.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -57,7 +57,7 @@
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/cameraoff.png);</string>
+    <string notr="true">image: url(:/icons/icons/cameraoff.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -95,7 +95,7 @@
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/home.png);</string>
+    <string notr="true">image: url(:/icons/icons/home.png);</string>
    </property>
    <property name="text">
     <string/>

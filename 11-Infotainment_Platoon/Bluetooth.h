@@ -1,5 +1,5 @@
-#ifndef BBLUETOOTH_H
-#define BBLUETOOTH_H
+#ifndef BLUETOOTH_H
+#define BLUETOOTH_H
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -39,7 +39,7 @@ private:
     MainWindow *mainWindowPtr;
 };
 
-#endif // BBLUETOOTH_H
+#endif // BLUETOOTH_H
 
 
 

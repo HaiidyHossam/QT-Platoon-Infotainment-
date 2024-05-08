@@ -42,7 +42,7 @@
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/Mute.png);</string>
+    <string notr="true">image: url(:/icons/icons/Mute.png);</string>
    </property>
    <property name="text">
     <string/>

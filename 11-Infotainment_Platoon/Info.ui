@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>439</height>
+    <width>709</width>
+    <height>492</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,21 +16,36 @@
   <widget class="QPushButton" name="Home">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>280</y>
-     <width>221</width>
-     <height>101</height>
+     <x>-40</x>
+     <y>0</y>
+     <width>141</width>
+     <height>491</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/home.png);</string>
+   </property>
    <property name="text">
-    <string>Home</string>
+    <string/>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>150</x>
+     <y>80</y>
      <width>261</width>
      <height>91</height>
     </rect>

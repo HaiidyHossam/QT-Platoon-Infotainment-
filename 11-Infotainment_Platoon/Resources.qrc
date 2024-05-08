@@ -1,17 +1,17 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>settings.png</file>
-        <file>setting-hover.png</file>
-        <file>save.png</file>
-        <file>prayer.png</file>
-        <file>on.png</file>
-        <file>off.png</file>
-        <file>Mute.png</file>
-        <file>info.png</file>
-        <file>home.png</file>
-        <file>cameraon.png</file>
-        <file>cameraoff.png</file>
-        <file>camera.png</file>
-        <file>bluetooth-off.png</file>
+        <file>icons/settings.png</file>
+        <file>icons/save.png</file>
+        <file>icons/prayer.png</file>
+        <file>icons/Mute.png</file>
+        <file>icons/info.png</file>
+        <file>icons/home.png</file>
+        <file>icons/cameraon.png</file>
+        <file>icons/cameraoff.png</file>
+        <file>icons/camera.png</file>
+        <file>icons/bluetooth.png</file>
+        <file>icons/bluetooth-off.png</file>
+        <file>icons/play.png</file>
+        <file>icons/music.png</file>
     </qresource>
 </RCC>
