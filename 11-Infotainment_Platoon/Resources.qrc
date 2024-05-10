@@ -11,7 +11,20 @@
         <file>icons/camera.png</file>
         <file>icons/bluetooth.png</file>
         <file>icons/bluetooth-off.png</file>
-        <file>icons/play.png</file>
         <file>icons/music.png</file>
+        <file>icons/CameraDefault.png</file>
+        <file>icons/video.png</file>
+        <file>icons/next.png</file>
+        <file>icons/previous.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/play.png</file>
+        <file>icons/weather.png</file>
+        <file>icons/repeat.png</file>
+        <file>icons/backward.png</file>
+        <file>icons/forward.png</file>
+        <file>icons/menu.png</file>
+        <file>icons/typo.png</file>
+        <file>icons/USB.png</file>
+        <file>icons/clock.png</file>
     </qresource>
 </RCC>

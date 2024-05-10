@@ -6,31 +6,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>539</width>
-    <height>384</height>
+    <width>696</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(4, 25, 216, 0), stop:1 rgba(4, 25, 216, 255));
+border-color: rgb(4, 25, 216);</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>10</y>
-     <width>221</width>
-     <height>111</height>
+     <x>100</x>
+     <y>40</y>
+     <width>481</width>
+     <height>291</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/typo.png);</string>
+   </property>
    <property name="text">
-    <string>It is time for pray</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="Stop_Sound">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>240</y>
+     <x>300</x>
+     <y>380</y>
      <width>91</width>
      <height>91</height>
     </rect>

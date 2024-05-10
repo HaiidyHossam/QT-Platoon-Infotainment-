@@ -81,7 +81,7 @@ void Mp4::on_listWidget_itemClicked(QListWidgetItem *item) {
 void Mp4::updateList() {
     ui->listWidget->clear();
     if (flashObj.updateFlashStatus() == false) {
-        ui->label->setText("Inser your USB!");
+        ui->label->setText("Insert a USB!");
     }
     else {
         ui->label->clear();
@@ -170,5 +170,11 @@ void Mp4::on_horizontalSlider_duration_sliderReleased() {
     int position = ui->horizontalSlider_duration->value();
     int newPos = ((position*player->duration())/100) ;
     player->setPosition(newPos);
+}
+
+
+void Mp4::on_horizontalSlider_valueChanged(int value)
+{
+
 }
 

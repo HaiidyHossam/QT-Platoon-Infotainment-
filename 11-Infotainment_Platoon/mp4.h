@@ -40,6 +40,8 @@ private slots:
     void on_horizontalSlider_duration_sliderReleased();
     void updateProgressBar();
 
+    void on_horizontalSlider_valueChanged(int value);
+
 private:
     Ui::Mp4 *ui;
     Flash flashObj;

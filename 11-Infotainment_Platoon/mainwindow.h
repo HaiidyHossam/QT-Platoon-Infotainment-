@@ -52,5 +52,6 @@ private slots:
 
     void on_Music_Button_clicked();
     void on_Video_Button_clicked();
+
 };
 #endif // MAINWINDOW_H
