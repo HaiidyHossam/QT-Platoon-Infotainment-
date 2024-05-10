@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->setFixedSize(1024,600);
     //set as default page
     ui->FirstStack->setCurrentIndex(0);
 
@@ -133,4 +134,7 @@ void MainWindow::on_Video_Button_clicked()
 {
       ui->FirstStack->setCurrentIndex(Video_page);
 }
+
+
+
 

@@ -106,14 +106,12 @@ void BBluetooth::on_toggle_bluetooth_clicked()
 {
     if (ui->toggle_bluetooth->isChecked()) {
         initializeBluetooth();
-        ui->bluetooth_icon->setPixmap(QPixmap(":/bluetooth/bluetooth-enabled.png"));
         ui->bluetooth_state->setText("Bluetooth is enabled.\nConnect your device!");
         //timer->start(5000);
 
     }
     else {
         disableBluetooth();
-        ui->bluetooth_icon->setPixmap(QPixmap(":/bluetooth/bluetooth-disabled.png"));
         ui->bluetooth_state->setText("Bluetooth is disabled.");
         ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
 

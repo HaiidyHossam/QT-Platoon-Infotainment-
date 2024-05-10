@@ -31,7 +31,7 @@ Mp3::~Mp3() {
 void Mp3::updateList() {
     ui->listWidget->clear();
     if (flashObj.updateFlashStatus() == false) {
-        ui->label->setText("Inser your USB!");
+        ui->label->setText("Insert a USB!");
     }
     else {
         ui->label->clear();

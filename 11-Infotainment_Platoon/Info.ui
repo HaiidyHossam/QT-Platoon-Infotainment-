@@ -6,20 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>709</width>
-    <height>492</height>
+    <width>1024</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">color: rgb(0, 0, 0);</string>
   </property>
   <widget class="QPushButton" name="Home">
    <property name="geometry">
     <rect>
      <x>-40</x>
      <y>0</y>
-     <width>141</width>
-     <height>491</height>
+     <width>150</width>
+     <height>600</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -44,14 +47,22 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>80</y>
+     <x>180</x>
+     <y>100</y>
      <width>261</width>
      <height>91</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
-    <string>our QT Version : Qt 5.15.8</string>
+    <string>QT Version: 5.15.8</string>
    </property>
   </widget>
  </widget>
