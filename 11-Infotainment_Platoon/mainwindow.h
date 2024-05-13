@@ -36,6 +36,9 @@ private:
     QMediaPlayer *player;
 
 private slots:
+
+
+    void Back_Home_Slot();
     void showTime();
 
     void on_Prayer_Button_clicked();
@@ -53,5 +56,7 @@ private slots:
     void on_Music_Button_clicked();
     void on_Video_Button_clicked();
 
+    void on_Map_Button_clicked();
+    void on_Gauge_Cluster_Button_clicked();
 };
 #endif // MAINWINDOW_H

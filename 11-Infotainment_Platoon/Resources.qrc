@@ -27,4 +27,14 @@
         <file>icons/USB.png</file>
         <file>icons/clock.png</file>
     </qresource>
+    <qresource prefix="/qml">
+        <file>qml/map.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/ArrowIndicator.qml</file>
+        <file>qml/SpeedometerStyle.qml</file>
+        <file>qml/RPMMeterStyle.qml</file>
+        <file>qml/ValueSource.qml</file>
+        <file>qml/assets/images/carla_map.jpg</file>
+        <file>qml/assets/icons/arrow.png</file>
+    </qresource>
 </RCC>

@@ -6,12 +6,16 @@
 #define Info_page 6
 #define Music_page 7
 #define Video_page 8
+#define Map_page 9
+#define Gauge_page 10
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QTimer>
 #include <QDebug>
+#include <QQuickWidget>
+#include <QQuickItem>
 #include "popNotify.h"
 #include "Camera.h"
 #include "Weather.h"
@@ -20,6 +24,7 @@
 #include "Prayer.h"
 #include "mp3.h"
 #include "mp4.h"
+#include "mqtt_connection.h"
 //.............
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,6 +36,10 @@ MainWindow::MainWindow(QWidget *parent)
     //set as default page
     ui->FirstStack->setCurrentIndex(0);
 
+    //connect mqtt broker
+    Mqtt_connection *MqttCon = new Mqtt_connection("broker.hivemq.com",1883);
+
+
     /* set widget as stacked widget*/
     Camera *cameraWidget = new Camera(this);
     ui->FirstStack->insertWidget(Camera_page, cameraWidget);
@@ -39,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     Settings *SettingsWidget = new Settings(this);
     ui->FirstStack->insertWidget(Settings_page, SettingsWidget);
     BBluetooth *BluetoothWidget=new BBluetooth(this);
-      ui->FirstStack->insertWidget(Bluetooth_page, BluetoothWidget);
+    ui->FirstStack->insertWidget(Bluetooth_page, BluetoothWidget);
     Info *InfoWidget=new Info(this);
     ui->FirstStack->insertWidget(Info_page, InfoWidget);
     Prayer *prayerWidget = new Prayer(this);
@@ -48,6 +57,38 @@ MainWindow::MainWindow(QWidget *parent)
     ui->FirstStack->insertWidget(Music_page, MusicWidget);
     Mp4 *VideoWidget = new Mp4(this);
     ui->FirstStack->insertWidget(Video_page, VideoWidget);
+
+
+
+    /* set qml map widgets*/
+    QQuickWidget *MapWidget = new QQuickWidget(this);
+    ui->FirstStack->insertWidget(Map_page,MapWidget);
+    //link map matt signal to qml
+    MapWidget->rootContext()->setContextProperty("possignal",MqttCon);
+
+    MapWidget->setSource(QUrl("qrc:/qml/qml/map.qml"));
+
+
+    //exit map to home
+    QQuickItem *rootObjectMap = MapWidget->rootObject();
+    auto return_button_map = rootObjectMap->findChild< QObject * > ("ExitButton");
+
+
+    connect(return_button_map, SIGNAL(returnToMainWindow()), this, SLOT(Back_Home_Slot()));
+
+    //gauge cluster qml
+    QQuickWidget *GaugeClusterWidget = new QQuickWidget(this);
+    ui->FirstStack->insertWidget(Gauge_page,GaugeClusterWidget);
+    GaugeClusterWidget->rootContext()->setContextProperty("mqttClient",MqttCon);
+
+    GaugeClusterWidget->setSource(QUrl("qrc:/qml/qml/main.qml"));
+
+    QQuickItem *rootObjectGauge = GaugeClusterWidget->rootObject();
+    auto return_button_gauge = rootObjectGauge->findChild<QObject *>("ExitButton");
+
+    connect(return_button_gauge,SIGNAL(returnToMainWindow2()),this,SLOT(Back_Home_Slot()));
+
+
 
 
     qDebug()<<"number is"<< ui->FirstStack->count();
@@ -97,7 +138,7 @@ void MainWindow::on_Camera_Button_clicked()
 
 void MainWindow::on_Weather_Button_clicked()
 {
-  //weather
+    //weather
     ui->FirstStack->setCurrentIndex(Weather_page);
 }
 
@@ -118,7 +159,7 @@ void MainWindow::on_Bluetooth_Button_clicked()
 
 void MainWindow::on_Info_Button_clicked()
 {
-     ui->FirstStack->setCurrentIndex(Info_page);
+    ui->FirstStack->setCurrentIndex(Info_page);
 }
 
 
@@ -126,15 +167,32 @@ void MainWindow::on_Info_Button_clicked()
 
 void MainWindow::on_Music_Button_clicked()
 {
-      ui->FirstStack->setCurrentIndex(Music_page);
+    ui->FirstStack->setCurrentIndex(Music_page);
 }
 
 
 void MainWindow::on_Video_Button_clicked()
 {
-      ui->FirstStack->setCurrentIndex(Video_page);
+    ui->FirstStack->setCurrentIndex(Video_page);
 }
 
 
+void MainWindow::Back_Home_Slot(){
 
+
+    Back_Home();
+
+}
+
+
+void MainWindow::on_Map_Button_clicked()
+{
+    ui->FirstStack->setCurrentIndex(Map_page);
+}
+
+
+void MainWindow::on_Gauge_Cluster_Button_clicked()
+{
+    ui->FirstStack->setCurrentIndex(Gauge_page);
+}
 

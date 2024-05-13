@@ -1,4 +1,4 @@
-QT       += core gui network  widgets multimedia multimediawidgets
+QT       += core gui network  widgets multimedia multimediawidgets mqtt quickwidgets qml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,6 +20,7 @@ SOURCES += \
     mainwindow.cpp \
     mp3.cpp \
     mp4.cpp \
+    mqtt_connection.cpp \
     popNotify.cpp
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     mainwindow.h \
     mp3.h \
     mp4.h \
+    mqtt_connection.h \
     popNotify.h
 
 FORMS += \

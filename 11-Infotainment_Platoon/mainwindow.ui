@@ -122,10 +122,10 @@ background-color: rgba(255, 255, 255, 0);</string>
        <string>Mov-12-20320123</string>
       </property>
       <property name="textFormat">
-       <enum>Qt::AutoText</enum>
+       <enum>Qt::TextFormat::AutoText</enum>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="Digital_Clock">
@@ -141,7 +141,6 @@ background-color: rgba(255, 255, 255, 0);</string>
        <font>
         <family>Ubuntu</family>
         <pointsize>96</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -153,7 +152,7 @@ background-color: rgba(255, 255, 255, 0);</string>
        <string>12:15 PM</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label">
@@ -173,7 +172,7 @@ background-color: rgba(255, 255, 255, 0);</string>
        <string/>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>200</x>
@@ -198,10 +197,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">image: url(:/icons/icons/video.png);</string>
@@ -229,10 +228,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">image: url(:/icons/icons/music.png);</string>
@@ -260,10 +259,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">image: url(:/icons/icons/camera.png);</string>
@@ -291,10 +290,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="acceptDrops">
           <bool>false</bool>
@@ -334,10 +333,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">image: url(:/icons/icons/weather.png);</string>
@@ -368,10 +367,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -412,10 +411,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="autoFillBackground">
           <bool>false</bool>
@@ -449,10 +448,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::FocusPolicy::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::NoContextMenu</enum>
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
          </property>
          <property name="autoFillBackground">
           <bool>false</bool>
@@ -470,17 +469,38 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="Map_Button">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>330</y>
+        <width>91</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Platoon Map</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Gauge_Cluster_Button">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>430</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gauge Cluster</string>
+      </property>
+     </widget>
+     <zorder>layoutWidget</zorder>
      <zorder>label</zorder>
-     <zorder>Prayer_Button</zorder>
-     <zorder>Camera_Button</zorder>
      <zorder>Digital_Clock</zorder>
-     <zorder>Weather_Button</zorder>
-     <zorder>Bluetooth_Button</zorder>
-     <zorder>Info_Button</zorder>
-     <zorder>Settings_Button</zorder>
-     <zorder>Music_Button</zorder>
-     <zorder>Video_Button</zorder>
      <zorder>DateTime</zorder>
+     <zorder>Map_Button</zorder>
+     <zorder>Gauge_Cluster_Button</zorder>
     </widget>
    </widget>
   </widget>
