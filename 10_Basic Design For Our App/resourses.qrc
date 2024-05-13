@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>Media/bluetooth_icon.png</file>
-        <file>Media/darkBackground.png</file>
-        <file>Media/info.png</file>
-        <file>Media/coldplay-at-cpa-3-by-michael-rietmulder.jpg</file>
-        <file>Media/chris.jpeg</file>
-    </qresource>
-</RCC>
