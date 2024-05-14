@@ -1,7 +1,7 @@
-#include "mp3.h"
+#include "Headers/mp3.h"
 #include "ui_mp3.h"
 #include <iostream>
-#include "flash.h"
+#include "Headers/flash.h"
 #include "QDir"
 #include <QListWidget>
 #include "QDebug"

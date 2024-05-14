@@ -9,50 +9,45 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Bluetooth.cpp \
-    Camera.cpp \
-    Info.cpp \
-    Prayer.cpp \
-    Settings.cpp \
-    Weather.cpp \
-    flash.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    mp3.cpp \
-    mp4.cpp \
-    mqtt_connection.cpp \
-    popNotify.cpp
+    Sources/Bluetooth.cpp \
+    Sources/Camera.cpp \
+    Sources/Info.cpp \
+    Sources/Prayer.cpp \
+    Sources/Settings.cpp \
+    Sources/Weather.cpp \
+    Sources/flash.cpp \
+    Sources/main.cpp \
+    Sources/mainwindow.cpp \
+    Sources/mp3.cpp \
+    Sources/mp4.cpp \
+    Sources/mqtt_connection.cpp \
+    Sources/popNotify.cpp
 
 HEADERS += \
-    Bluetooth.h \
-    Camera.h \
-    Info.h \
-    Prayer.h \
-    Settings.h \
-    Weather.h \
-    flash.h \
-    mainwindow.h \
-    mp3.h \
-    mp4.h \
-    mqtt_connection.h \
-    popNotify.h
+    Headers/Bluetooth.h \
+    Headers/Camera.h \
+    Headers/Info.h \
+    Headers/Prayer.h \
+    Headers/Settings.h \
+    Headers/Weather.h \
+    Headers/flash.h \
+    Headers/mainwindow.h \
+    Headers/mp3.h \
+    Headers/mp4.h \
+    Headers/mqtt_connection.h \
+    Headers/popNotify.h
 
 FORMS += \
-    Bluetooth.ui \
-    Camera.ui \
-    Info.ui \
-    Prayer.ui \
-    Settings.ui \
-    Weather.ui \
-    mainwindow.ui \
-    mp3.ui \
-    mp4.ui \
-    popNotify.ui
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+    Forms/Bluetooth.ui \
+    Forms/Camera.ui \
+    Forms/Info.ui \
+    Forms/Prayer.ui \
+    Forms/Settings.ui \
+    Forms/Weather.ui \
+    Forms/mainwindow.ui \
+    Forms/mp3.ui \
+    Forms/mp4.ui \
+    Forms/popNotify.ui
 
 RESOURCES += \
     Resources.qrc

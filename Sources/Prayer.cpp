@@ -1,6 +1,6 @@
-#include "Prayer.h"
+#include "Headers/Prayer.h"
 #include "ui_Prayer.h"
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 #include "QSettings"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>

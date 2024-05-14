@@ -1,5 +1,5 @@
 // Camera.cpp
-#include "Weather.h"
+#include "Headers/Weather.h"
 #include "ui_Weather.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -7,7 +7,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QSettings>
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 
 Weather::Weather(MainWindow *parent)
     : QDialog(parent)

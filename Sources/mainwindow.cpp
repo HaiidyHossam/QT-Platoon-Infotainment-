@@ -9,22 +9,21 @@
 #define Map_page 9
 #define Gauge_page 10
 
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QTimer>
 #include <QDebug>
 #include <QQuickWidget>
 #include <QQuickItem>
-#include "popNotify.h"
-#include "Camera.h"
-#include "Weather.h"
-#include "Settings.h"
-#include "Info.h"
-#include "Prayer.h"
-#include "mp3.h"
-#include "mp4.h"
-#include "mqtt_connection.h"
+#include "Headers/Camera.h"
+#include "Headers/Weather.h"
+#include "Headers/Settings.h"
+#include "Headers/Info.h"
+#include "Headers/Prayer.h"
+#include "Headers/mp3.h"
+#include "Headers/mp4.h"
+#include "Headers/mqtt_connection.h"
 //.............
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -47,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->FirstStack->insertWidget(Weather_page, WeatherWidget);
     Settings *SettingsWidget = new Settings(this);
     ui->FirstStack->insertWidget(Settings_page, SettingsWidget);
-    BBluetooth *BluetoothWidget=new BBluetooth(this);
+    Bluetooth *BluetoothWidget=new Bluetooth(this);
     ui->FirstStack->insertWidget(Bluetooth_page, BluetoothWidget);
     Info *InfoWidget=new Info(this);
     ui->FirstStack->insertWidget(Info_page, InfoWidget);

@@ -1,4 +1,4 @@
-#include "mqtt_connection.h"
+#include "Headers/mqtt_connection.h"
 
 Mqtt_connection::Mqtt_connection(QString host, int port) :
     m_client(new QMqttClient(this))

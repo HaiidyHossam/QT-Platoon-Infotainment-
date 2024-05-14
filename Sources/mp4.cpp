@@ -1,7 +1,7 @@
-#include "mp4.h"
+#include "Headers/mp4.h"
 #include "ui_mp4.h"
 
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 #include "QDir"
 #include "iostream"
 

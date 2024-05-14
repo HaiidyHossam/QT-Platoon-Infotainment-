@@ -1,6 +1,6 @@
-#include "Info.h"
+#include "Headers/Info.h"
 #include "ui_Info.h"
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 
 Info::Info(MainWindow *parent)
     : QDialog(parent)

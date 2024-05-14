@@ -9,16 +9,16 @@
 class MainWindow; // Forward declaration
 
 namespace Ui {
-class BBluetooth;
+class Bluetooth;
 }
 
-class BBluetooth : public QDialog
+class Bluetooth : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit BBluetooth(MainWindow *parent = nullptr);
-    ~BBluetooth();
+    explicit Bluetooth(MainWindow *parent = nullptr);
+    ~Bluetooth();
     void sendCommand(const char* command);
     void initializeBluetooth();
     void disableBluetooth();
@@ -34,7 +34,7 @@ private slots:
 
 private:
     QTimer *timer_bluetooth;
-    Ui::BBluetooth *ui;
+    Ui::Bluetooth *ui;
     FILE* btctlProcess;
     MainWindow *mainWindowPtr;
 };

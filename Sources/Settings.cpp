@@ -1,7 +1,7 @@
-#include "Settings.h"
+#include "Headers/Settings.h"
 #include "ui_Settings.h"
-#include "mainwindow.h"
-#include "Prayer.h"
+#include "Headers/mainwindow.h"
+#include "Headers/Prayer.h"
 Settings::Settings(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::Settings),

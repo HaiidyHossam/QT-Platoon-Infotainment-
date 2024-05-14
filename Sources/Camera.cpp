@@ -1,7 +1,7 @@
 // Camera.cpp
-#include "Camera.h"
+#include "Headers/Camera.h"
 #include "ui_Camera.h"
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 
 Camera::Camera(MainWindow *parent) :
     QDialog(parent),

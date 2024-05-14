@@ -1,11 +1,11 @@
 
-#include "Bluetooth.h"
+#include "Headers/Bluetooth.h"
 #include "ui_Bluetooth.h"
-#include "mainwindow.h"
+#include "Headers/mainwindow.h"
 
-BBluetooth::BBluetooth(MainWindow *parent)
+Bluetooth::Bluetooth(MainWindow *parent)
     : QDialog(parent)
-    , ui(new Ui::BBluetooth),
+    , ui(new Ui::Bluetooth),
    mainWindowPtr(parent)
 {
     ui->setupUi(this);
@@ -19,27 +19,27 @@ BBluetooth::BBluetooth(MainWindow *parent)
     }
 }
 
-BBluetooth::~BBluetooth()
+Bluetooth::~Bluetooth()
 {
     closeBluetooth();
     delete ui;
 }
 
 
-void BBluetooth::sendCommand(const char* command) {
+void Bluetooth::sendCommand(const char* command) {
     fprintf(btctlProcess, "%s\n", command);
     fflush(btctlProcess);
     std::cout << "Sent command: " << command << std::endl;
 }
 
-void BBluetooth::initializeBluetooth() {
+void Bluetooth::initializeBluetooth() {
     sendCommand("power on");
     sendCommand("agent on");
     sendCommand("default-agent");
     sendCommand("discovrable on");
 }
 
-std::string BBluetooth::getConnectedDeviceName() {
+std::string Bluetooth::getConnectedDeviceName() {
     // Run hcitool to get connected devices
     FILE* hcitoolProcess = popen("hcitool con", "r");
     if (!hcitoolProcess) {
@@ -84,25 +84,25 @@ std::string BBluetooth::getConnectedDeviceName() {
     return connectedDeviceName;
 }
 
-void BBluetooth::disableBluetooth() {
+void Bluetooth::disableBluetooth() {
     sendCommand("power off");
 }
 
-void BBluetooth::closeBluetooth() {
+void Bluetooth::closeBluetooth() {
     sendCommand("quit");
     pclose(btctlProcess);
 }
 
-void BBluetooth::on_Back_Home_clicked()
+void Bluetooth::on_Back_Home_clicked()
 {
      mainWindowPtr->Back_Home();
 }
 
-void BBluetooth::update_connected_device() {
+void Bluetooth::update_connected_device() {
     ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
 }
 
-void BBluetooth::on_toggle_bluetooth_clicked()
+void Bluetooth::on_toggle_bluetooth_clicked()
 {
     if (ui->toggle_bluetooth->isChecked()) {
         initializeBluetooth();
