@@ -5,10 +5,12 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Shapes 1.15
 
-Item {
-    width: 679
-    height: 670
+Rectangle {
+    id: item
+    width: 1024
+    height: 600
     visible: true
+    color : "black"
 
     property int animationIndex: 0
     // Define the scaling factor
@@ -18,17 +20,23 @@ Item {
         id: imageContainer
         width: 679
         height: 670
+
+        anchors.centerIn: parent
+
         Image {
             id: image
             source: "assets/images/carla_map.jpg"
-            anchors.fill: parent
+
+            //  anchors.fill: parent
+            anchors.centerIn: parent
             smooth: true
             //scale: zoomFactor
         }
 
         PathView {
             id: pathView
-            anchors.fill: parent
+            // anchors.fill: parent
+            anchors.centerIn: parent
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
             snapMode: PathView.NoSnap
@@ -131,6 +139,7 @@ Item {
 
         objectName: "ExitButton"
         text: "Return to Main Window"
+        anchors.left : parent.left
 
         onClicked:  returnToMainWindowAction()
 

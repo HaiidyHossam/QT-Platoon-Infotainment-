@@ -8,8 +8,8 @@ import QtQuick.Extras 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 2.15
 Item {
-    width: 700
-    height: 500
+    width: 1024
+    height: 600
     visible: true
 
 
@@ -17,8 +17,8 @@ Item {
     Rectangle {
         id: dashboard
         anchors.centerIn: parent
-        height:500
-        width:1000
+        width:1024
+        height:600
         color:"black";
         Row{
             id:indicatorRow
@@ -44,7 +44,7 @@ Item {
 
         Row{
             id:dashboardRow
-            spacing:dashboard.width *0.4
+            spacing:dashboard.width *0.2
             anchors.centerIn: parent
 
             CircularGauge{
@@ -83,7 +83,7 @@ Item {
                 }
             }
         }
-        /*Keys.onLeftPressed: {
+        Keys.onLeftPressed: {
             leftIndicator.on=true;
             rightIndicator.on=false;
         }
@@ -91,22 +91,9 @@ Item {
             rightIndicator.on=true;
             leftIndicator.on=false;
         }
-        Keys.onUpPressed: {
-            speedometer.acceleration = true
-        }
-        Keys.onReleased: {
-            if(event.key === Qt.Key_Up)
-            {
-                speedometer.acceleration=false;
-                event.accepted=true;
-            }
-        }*/
+
     }
-    /*MqttClient {
-        id: mqttClient
-        onSpeedChanged: speedometer.value = speed
-        onRpmChanged: rpmMeter.value = rpm
-    }*/
+
 
 
 
@@ -115,7 +102,7 @@ Item {
 
         objectName: "ExitButton"
         text: "Return to Main Window"
-        anchors.centerIn :    parent
+        anchors.left : parent.left
         onClicked:  returnToMainWindowAction2()
 
         // Define a signal to indicate returning to the main window
