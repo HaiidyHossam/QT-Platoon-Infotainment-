@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/settings.png</file>
+        <file>icons/save.png</file>
+        <file>icons/prayer.png</file>
+        <file>icons/Mute.png</file>
+        <file>icons/info.png</file>
+        <file>icons/home.png</file>
+        <file>icons/cameraon.png</file>
+        <file>icons/cameraoff.png</file>
+        <file>icons/camera.png</file>
+        <file>icons/bluetooth.png</file>
+        <file>icons/bluetooth-off.png</file>
+        <file>icons/music.png</file>
+        <file>icons/CameraDefault.png</file>
+        <file>icons/video.png</file>
+        <file>icons/next.png</file>
+        <file>icons/previous.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/play.png</file>
+        <file>icons/weather.png</file>
+        <file>icons/repeat.png</file>
+        <file>icons/backward.png</file>
+        <file>icons/forward.png</file>
+        <file>icons/menu.png</file>
+        <file>icons/typo.png</file>
+        <file>icons/USB.png</file>
+        <file>icons/clock.png</file>
+    </qresource>
+    <qresource prefix="/qml">
+        <file>qml/map.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/ArrowIndicator.qml</file>
+        <file>qml/SpeedometerStyle.qml</file>
+        <file>qml/RPMMeterStyle.qml</file>
+        <file>qml/ValueSource.qml</file>
+        <file>qml/assets/images/carla_map.jpg</file>
+        <file>qml/assets/icons/arrow.png</file>
+    </qresource>
+</RCC>

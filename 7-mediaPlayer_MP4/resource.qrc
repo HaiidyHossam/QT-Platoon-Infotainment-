@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/path">
-        <file>paths/hello.mp4</file>
-    </qresource>
-    <qresource prefix="/new/prefix1"/>
-</RCC>

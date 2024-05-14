@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>AudioInfoBox.qml</file>
-        <file>ImageButton.qml</file>
-    </qresource>
-</RCC>
