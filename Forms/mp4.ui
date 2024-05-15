@@ -235,6 +235,10 @@ image: url(:/icons/icons/USB.png);</string>
     <property name="contextMenuPolicy">
      <enum>Qt::NoContextMenu</enum>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
+    </property>
    </widget>
    <widget class="QSplitter" name="splitter">
     <property name="geometry">
@@ -333,11 +337,8 @@ QCheckBox::indicator:checked {
      </property>
     </widget>
    </widget>
+   <zorder>splitter</zorder>
    <zorder>home_button</zorder>
-   <zorder>start_pause_button</zorder>
-   <zorder>repeat_button</zorder>
-   <zorder>seek_forward_button</zorder>
-   <zorder>seek_backward_button</zorder>
    <zorder>horizontalSlider_duration</zorder>
    <zorder>current_time_label</zorder>
    <zorder>total_time_label</zorder>

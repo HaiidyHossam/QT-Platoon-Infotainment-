@@ -107,11 +107,11 @@ MainWindow::~MainWindow()
 void MainWindow::showTime()
 {
     QDateTime currentTime = QDateTime::currentDateTime();
-    QString timeText = "<font color='white'>" + currentTime.toString("h:mm AP") + "</font>"; // Customize the time format and color
+    QString timeText = currentTime.toString("h:mm AP"); // Customize the time format and color
     ui->Digital_Clock->setText(timeText);
 
     QDateTime dateTime = QDateTime::currentDateTime();
-    QString datetimetext = "<font color='white'>" + dateTime.toString("dddd, MMMM d, yyyy") + "</font>"; // Customize the date format and color
+    QString datetimetext = dateTime.toString("dddd, MMMM d, yyyy"); // Customize the date format and color
     ui->DateTime->setText(datetimetext);
 }
 

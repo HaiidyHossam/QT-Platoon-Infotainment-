@@ -87,9 +87,23 @@ Rectangle {
 
     Button {
 
+        Image {
+            id: image_home
+            source: "assets/images/home.png"
+            //anchors.centerIn: parent
+            smooth: true
+        }
+
         objectName: "ExitButton"
-        text: "Return to Main Window"
+        //text: "Return to Main Window"
         anchors.left : parent.left
+        width: 80
+        height: 600
+        palette {
+               button: "black"
+           }
+        //color:
+
 
         onClicked:  returnToMainWindowAction()
 

@@ -26,6 +26,9 @@
         <file>icons/typo.png</file>
         <file>icons/USB.png</file>
         <file>icons/clock.png</file>
+        <file>icons/gauge.png</file>
+        <file>icons/map.png</file>
+        <file>icons/Background.png</file>
     </qresource>
     <qresource prefix="/qml">
         <file>qml/map.qml</file>
@@ -36,5 +39,7 @@
         <file>qml/ValueSource.qml</file>
         <file>qml/assets/images/carla_map.jpg</file>
         <file>qml/assets/icons/arrow.png</file>
+        <file>qml/assets/images/home.png</file>
+        <file>qml/assets/images/home2.png</file>
     </qresource>
 </RCC>

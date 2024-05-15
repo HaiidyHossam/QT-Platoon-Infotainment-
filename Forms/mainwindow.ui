@@ -41,9 +41,14 @@
    <string notr="true"/>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true">image: url(:/icons/icons/Background.png);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/);
+color: rgb(0, 0, 0);
+</string>
+   </property>
    <widget class="QStackedWidget" name="FirstStack">
     <property name="geometry">
      <rect>
@@ -89,12 +94,16 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
+     <string notr="true">image: url(:/icons/icons/);
+</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <widget class="QWidget" name="MainButtons">
+     <property name="styleSheet">
+      <string notr="true">background-color: none;</string>
+     </property>
      <widget class="QLabel" name="DateTime">
       <property name="geometry">
        <rect>
@@ -111,21 +120,28 @@
         <italic>false</italic>
        </font>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::DefaultContextMenu</enum>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-background-color: rgba(255, 255, 255, 0);</string>
+image: url(:/icons/icons/);
+</string>
       </property>
       <property name="text">
        <string>Mov-12-20320123</string>
       </property>
       <property name="textFormat">
-       <enum>Qt::TextFormat::AutoText</enum>
+       <enum>Qt::PlainText</enum>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="Digital_Clock">
@@ -141,18 +157,20 @@ background-color: rgba(255, 255, 255, 0);</string>
        <font>
         <family>Ubuntu</family>
         <pointsize>96</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
+image: url(:/icons/icons/);
 background-color: rgba(255, 255, 255, 0);</string>
       </property>
       <property name="text">
        <string>12:15 PM</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label">
@@ -182,8 +200,8 @@ background-color: rgba(255, 255, 255, 0);</string>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="Video_Button">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Settings_Button">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
            <horstretch>0</horstretch>
@@ -197,24 +215,30 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">image: url(:/icons/icons/video.png);</string>
+          <string notr="true">image: url(:/icons/icons/settings.png);</string>
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="Music_Button">
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Info_Button">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
            <horstretch>0</horstretch>
@@ -228,44 +252,16 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">image: url(:/icons/icons/music.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="Camera_Button">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>91</width>
-           <height>91</height>
-          </size>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/icons/icons/camera.png);</string>
+          <string notr="true">image: url(:/icons/icons/info.png);</string>
          </property>
          <property name="text">
           <string/>
@@ -290,10 +286,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+          <enum>Qt::NoContextMenu</enum>
          </property>
          <property name="acceptDrops">
           <bool>false</bool>
@@ -333,13 +329,106 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+          <enum>Qt::NoContextMenu</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">image: url(:/icons/icons/weather.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="Music_Button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>91</width>
+           <height>91</height>
+          </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/icons/icons/music.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="Camera_Button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>91</width>
+           <height>91</height>
+          </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/icons/icons/camera.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="Video_Button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>91</width>
+           <height>91</height>
+          </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/icons/icons/video.png);</string>
          </property>
          <property name="text">
           <string/>
@@ -367,10 +456,10 @@ background-color: rgba(255, 255, 255, 0);</string>
           </size>
          </property>
          <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+          <enum>Qt::NoContextMenu</enum>
          </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -396,111 +485,55 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="Settings_Button">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>91</width>
-           <height>91</height>
-          </size>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/icons/icons/settings.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="Info_Button">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>91</width>
-           <height>91</height>
-          </size>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::FocusPolicy::NoFocus</enum>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/icons/icons/info.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QPushButton" name="Map_Button">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>360</y>
-        <width>91</width>
-        <height>71</height>
+        <x>914</x>
+        <y>0</y>
+        <width>150</width>
+        <height>600</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/icons/icons/map.png);</string>
+      </property>
       <property name="text">
-       <string>Platoon Map</string>
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="Gauge_Cluster_Button">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>460</y>
-        <width>91</width>
-        <height>61</height>
+        <x>-40</x>
+        <y>0</y>
+        <width>150</width>
+        <height>600</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/icons/icons/gauge.png);</string>
+      </property>
       <property name="text">
-       <string>Gauge Cluster</string>
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <zorder>layoutWidget</zorder>
+     <zorder>Map_Button</zorder>
+     <zorder>Gauge_Cluster_Button</zorder>
      <zorder>label</zorder>
      <zorder>Digital_Clock</zorder>
      <zorder>DateTime</zorder>
-     <zorder>Map_Button</zorder>
-     <zorder>Gauge_Cluster_Button</zorder>
     </widget>
    </widget>
   </widget>

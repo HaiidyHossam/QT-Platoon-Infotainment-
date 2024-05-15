@@ -99,10 +99,22 @@ Item {
 
 
     Button {
+        Image {
+            id: image_home2
+            source: "assets/images/home2.png"
+            //anchors.centerIn: parent
+            smooth: true
+        }
 
         objectName: "ExitButton"
-        text: "Return to Main Window"
-        anchors.left : parent.left
+        //text: "Return to Main Window"
+        anchors.right : parent.right
+        width: 80
+        height: 600
+        palette {
+               button: "black"
+           }
+
         onClicked:  returnToMainWindowAction2()
 
         // Define a signal to indicate returning to the main window
