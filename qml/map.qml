@@ -27,7 +27,6 @@ Rectangle {
             id: image
             source: "assets/images/carla_map.jpg"
 
-            //  anchors.fill: parent
             anchors.centerIn: parent
             smooth: true
             //scale: zoomFactor
@@ -35,7 +34,6 @@ Rectangle {
 
         PathView {
             id: pathView
-            // anchors.fill: parent
             anchors.centerIn: parent
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
@@ -43,55 +41,7 @@ Rectangle {
             highlightRangeMode: PathView.StrictlyEnforceRange
             pathItemCount: pathModel.count
 
-            model: ListModel {
-                id: pathModel
-                ListElement { x: 65; y: 42 }
-                ListElement { x: 100; y: 42 }
-                ListElement { x: 190; y: 42 }
-                ListElement { x: 250; y: 42 }
-                ListElement { x: 300; y: 42 }
-                ListElement { x: 350; y: 42 }
-                ListElement { x: 400; y: 42 }
-                ListElement { x: 480; y: 42 }
-                ListElement { x: 550; y: 42 }
-                ListElement { x: 600; y: 42 }
-                ListElement { x: 620; y: 42 }
-                ListElement { x: 620; y: 50 }
-                ListElement { x: 620; y: 100 }
-                ListElement { x: 620; y: 150 }
-                ListElement { x: 620; y: 200 }
-                ListElement { x: 620; y: 250 }
-                ListElement { x: 620; y: 300 }
-                ListElement { x: 620; y: 350 }
-                ListElement { x: 620; y: 400 }
-                ListElement { x: 620; y: 450 }
-                ListElement { x: 620; y: 500 }
-                ListElement { x: 620; y: 550 }
-                ListElement { x: 620; y: 600}
-                ListElement { x: 600; y: 600}
-                ListElement { x: 550; y: 600}
-                ListElement { x: 500; y: 600}
-                ListElement { x: 450; y: 600}
-                ListElement { x: 400; y: 600}
-                ListElement { x: 350; y: 600}
-                ListElement { x: 300; y: 600}
-                ListElement { x: 250; y: 600}
-                ListElement { x: 200; y: 600}
-                ListElement { x: 150; y: 600}
-                ListElement { x: 100; y: 600}
-                ListElement { x: 65; y: 600}
-                ListElement { x: 65; y: 550}
-                ListElement { x: 65; y: 500}
-                ListElement { x: 65; y: 450}
-                ListElement { x: 65; y: 400}
-                ListElement { x: 65; y: 350}
-                ListElement { x: 65; y: 300}
-                ListElement { x: 65; y: 250}
-                ListElement { x: 65; y: 200}
-                ListElement { x: 65; y: 150}
-                ListElement { x: 65; y: 100}
-                ListElement { x: 65; y: 42 }
-            }
+
 
             delegate: Rectangle {
                 width: 20
