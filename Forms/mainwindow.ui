@@ -157,7 +157,6 @@ image: url(:/icons/icons/);
        <font>
         <family>Ubuntu</family>
         <pointsize>96</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -495,6 +494,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <width>150</width>
         <height>600</height>
        </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">image: url(:/icons/icons/map.png);</string>
