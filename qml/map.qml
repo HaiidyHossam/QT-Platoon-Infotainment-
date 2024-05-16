@@ -69,18 +69,6 @@ Rectangle {
 
             Behavior on x { NumberAnimation { duration: 1000 } }
             Behavior on y { NumberAnimation { duration: 1000 } }
-
-            Timer {
-                interval: 1000
-                repeat: true
-                running: true
-                onTriggered: {
-                    if (animationIndex < pathModel.count - 1)
-                        animationIndex++
-                    else
-                        animationIndex = 0
-                }
-            }
         }
     }
 

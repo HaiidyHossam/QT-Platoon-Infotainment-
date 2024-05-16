@@ -28,8 +28,8 @@
   <widget class="QCheckBox" name="toggle_bluetooth">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>100</y>
+     <x>460</x>
+     <y>320</y>
      <width>161</width>
      <height>151</height>
     </rect>
@@ -53,8 +53,8 @@ QCheckBox::indicator:checked {
   <widget class="QLabel" name="bluetooth_state">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>290</y>
+     <x>180</x>
+     <y>100</y>
      <width>661</width>
      <height>191</height>
     </rect>

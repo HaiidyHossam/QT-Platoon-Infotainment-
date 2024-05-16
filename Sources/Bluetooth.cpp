@@ -24,7 +24,7 @@ Bluetooth::Bluetooth(MainWindow *parent)
 Bluetooth::~Bluetooth()
 {
     closeBluetooth();
-    pclose(Bscript);
+    //pclose(Bscript);
     delete ui;
 }
 
