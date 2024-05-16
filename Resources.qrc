@@ -31,6 +31,8 @@
         <file>icons/Background.png</file>
         <file>icons/empty.png</file>
         <file>icons/NoInternet.png</file>
+        <file>icons/shuffleOn.png</file>
+        <file>icons/shuffleOff.png</file>
     </qresource>
     <qresource prefix="/qml">
         <file>qml/map.qml</file>

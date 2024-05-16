@@ -114,11 +114,21 @@ void Mp3::on_start_stop_button_clicked() {
 }
 
 void Mp3::on_next_button_clicked() {
+    QListWidgetItem *nextItem ;
     if (ui->listWidget->count() == 0) {
         return;
     }
     int currentIndex = indx; //ui->listWidget->currentRow();
-    QListWidgetItem *nextItem = ui->listWidget->item(currentIndex+1);
+    if(rand==false)
+    {
+         nextItem = ui->listWidget->item(currentIndex+1);
+    }
+    else
+    {
+        int randomIndex = QRandomGenerator::global()->bounded(ui->listWidget->count());
+         nextItem = ui->listWidget->item(randomIndex);
+    }
+
     if (nextItem == nullptr) {
         nextItem = ui->listWidget->item(0);
     }
@@ -162,17 +172,16 @@ void Mp3::handleMediaStatusChanged(QMediaPlayer::MediaStatus status)
 }
 
 
-void Mp3::on_pushButton_clicked()
-{
-    int randomIndex = QRandomGenerator::global()->bounded(ui->listWidget->count());
 
-    // Play the song at the random index
-    if (randomIndex >= 0 && ui->listWidget->count()) {
-        QListWidgetItem *nextItem = ui->listWidget->item(randomIndex);
-        ui->listWidget->setCurrentItem(nextItem);
-        on_listWidget_itemClicked(nextItem);
-    } else {
-        qDebug() << "Invalid random index.";
+
+void Mp3::on_shuffle_clicked()
+{
+    if(ui->shuffle->isChecked()) {
+        rand=true;
     }
+    else {
+        rand=false;
+    }
+
 }
 

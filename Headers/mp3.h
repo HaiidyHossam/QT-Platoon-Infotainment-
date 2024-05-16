@@ -28,6 +28,7 @@ private:
     MainWindow *mainWindowPtr;
     QTimer *timer;
     int indx=0;
+    bool rand=false;
 
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem *item);
@@ -42,7 +43,7 @@ private slots:
     void on_repeat_button_clicked();
     void on_home_button_clicked();
     void handleMediaStatusChanged(QMediaPlayer::MediaStatus status);
-    void on_pushButton_clicked();
+    void on_shuffle_clicked();
 };
 
 #endif // MP3_H
