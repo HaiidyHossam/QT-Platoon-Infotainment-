@@ -29,6 +29,8 @@
         <file>icons/gauge.png</file>
         <file>icons/map.png</file>
         <file>icons/Background.png</file>
+        <file>icons/empty.png</file>
+        <file>icons/NoInternet.png</file>
     </qresource>
     <qresource prefix="/qml">
         <file>qml/map.qml</file>
