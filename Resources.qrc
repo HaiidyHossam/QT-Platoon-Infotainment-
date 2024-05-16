@@ -46,4 +46,7 @@
         <file>qml/assets/images/home.png</file>
         <file>qml/assets/images/home2.png</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file>sounds/azhan.mp3</file>
+    </qresource>
 </RCC>

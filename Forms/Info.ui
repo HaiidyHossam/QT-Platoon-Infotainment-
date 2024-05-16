@@ -55,7 +55,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
+     <family>Sans Serif</family>
+     <pointsize>22</pointsize>
     </font>
    </property>
    <property name="styleSheet">

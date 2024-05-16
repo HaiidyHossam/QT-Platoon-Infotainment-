@@ -32,10 +32,10 @@
     </rect>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::FocusPolicy::NoFocus</enum>
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="contextMenuPolicy">
-    <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+    <enum>Qt::NoContextMenu</enum>
    </property>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
@@ -47,10 +47,10 @@
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+     <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">background: transparent;
@@ -67,16 +67,16 @@ font-size: 22px</string>
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+     <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
    <widget class="QSlider" name="verticalSlider">
@@ -89,10 +89,10 @@ font-size: 22px</string>
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+     <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);</string>
@@ -120,10 +120,10 @@ font-size: 22px</string>
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::FocusPolicy::NoFocus</enum>
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+     <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/icons/icons/home.png);</string>
@@ -161,20 +161,20 @@ image: url(:/icons/icons/USB.png);</string>
      <string>text</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
     </property>
    </widget>
    <widget class="QSplitter" name="splitter">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>460</y>
-      <width>711</width>
+      <y>490</y>
+      <width>781</width>
       <height>91</height>
      </rect>
     </property>
     <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
+     <enum>Qt::Horizontal</enum>
     </property>
     <widget class="QPushButton" name="previous_button">
      <property name="minimumSize">
@@ -184,10 +184,10 @@ image: url(:/icons/icons/USB.png);</string>
       </size>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/icons/icons/previous.png);</string>
@@ -225,13 +225,13 @@ image: url(:/icons/icons/USB.png);</string>
       <bool>false</bool>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="layoutDirection">
-      <enum>Qt::LayoutDirection::LeftToRight</enum>
+      <enum>Qt::LeftToRight</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">
@@ -258,10 +258,10 @@ QCheckBox::indicator:checked {
       </size>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/icons/icons/next.png);</string>
@@ -284,10 +284,10 @@ QCheckBox::indicator:checked {
       </size>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/icons/icons/repeat.png);</string>
@@ -300,6 +300,33 @@ QCheckBox::indicator:checked {
      </property>
      <property name="flat">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="shuffle">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::NoContextMenu</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QCheckBox::indicator:unchecked {
+	image: url(:/icons/icons/shuffleOff.png);
+}
+
+QCheckBox::indicator:checked {
+	image: url(:/icons/icons/shuffleOn.png);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -325,30 +352,7 @@ image: url(:/icons/icons/empty.png);</string>
      <string>No Mp3 Files</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="shuffle">
-    <property name="geometry">
-     <rect>
-      <x>840</x>
-      <y>460</y>
-      <width>101</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-QCheckBox::indicator:unchecked {
-	image: url(:/icons/icons/shuffleOff.png);
-}
-
-QCheckBox::indicator:checked {
-	image: url(:/icons/icons/shuffleOn.png);
-}</string>
-    </property>
-    <property name="text">
-     <string/>
+     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
     </property>
    </widget>
    <zorder>listWidget</zorder>
@@ -358,7 +362,6 @@ QCheckBox::indicator:checked {
    <zorder>splitter</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
-   <zorder>shuffle</zorder>
   </widget>
  </widget>
  <resources/>

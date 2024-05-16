@@ -8,7 +8,7 @@ popNotify::popNotify(QWidget *parent)
 {
     ui->setupUi(this);
     player = new QMediaPlayer();
-    QString filePath = "/home/haiidy/file.mp3"; // Update the file path as needed
+    QString filePath = "qrc:/sounds/sounds/azhan.mp3"; // Update the file path as needed
     player->setMedia(QUrl::fromLocalFile(filePath));
     player->setVolume(50);
     player->play();
