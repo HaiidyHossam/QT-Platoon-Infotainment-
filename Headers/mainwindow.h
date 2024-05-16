@@ -10,6 +10,7 @@
 #include <QMediaPlayer>
 #include "Bluetooth.h"
 #include "Weather.h"
+#include <QPropertyAnimation>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -34,6 +35,8 @@ private:
 
     MainWindow *mainWindow;
     QMediaPlayer *player;
+    QPropertyAnimation *fadeInAnimation;
+    QPropertyAnimation *fadeOutAnimation;
 
 private slots:
 

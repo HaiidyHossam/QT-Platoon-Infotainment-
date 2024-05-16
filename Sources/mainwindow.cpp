@@ -24,6 +24,7 @@
 #include "Headers/mp3.h"
 #include "Headers/mp4.h"
 #include "Headers/mqtt_connection.h"
+#include <QPropertyAnimation>
 //.............
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -98,9 +99,22 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(showTime()));
     timer->start(1000);
 
+
 }
+/*
+void createFadding(int index)
+{
+    fadeInAnimation = new QPropertyAnimation(stackedWidget.widget(0), "windowOpacity");
+    fadeInAnimation->setDuration(1000);
+    fadeInAnimation->setStartValue(0);
+    fadeInAnimation->setEndValue(1);
 
-
+    fadeOutAnimation = new QPropertyAnimation(stackedWidget.widget(1), "windowOpacity");
+    fadeOutAnimation->setDuration(1000);
+    fadeOutAnimation->setStartValue(1);
+    fadeOutAnimation->setEndValue(0);
+}
+*/
 MainWindow::~MainWindow()
 {
     delete ui;
