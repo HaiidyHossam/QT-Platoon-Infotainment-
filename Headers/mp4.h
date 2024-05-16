@@ -41,6 +41,10 @@ private slots:
     void updateProgressBar();
 
     void on_horizontalSlider_valueChanged(int value);
+    void handleMediaStatusChanged(QMediaPlayer::MediaStatus status);
+
+
+    void on_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::Mp4 *ui;

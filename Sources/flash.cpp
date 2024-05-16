@@ -81,7 +81,7 @@ bool Flash::updateFlashStatus() {
             modData += c;
         }
     }
-    usbName = extractUsb(devices);
+    usbName = extractUsb(modData);
     if (usbName == "") {
         //std::cerr << "Failed to extract USB device name!" << std::endl;
         if (isMounted == true) {
