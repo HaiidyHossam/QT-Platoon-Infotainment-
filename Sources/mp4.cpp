@@ -16,6 +16,9 @@ Mp4::Mp4(MainWindow *parent)
     player = new QMediaPlayer();
     player->setVolume(ui->verticalSlider_sound->value());
     connect(player, &QMediaPlayer::positionChanged, this, &Mp4::updateProgressBar);
+    connect(player, &QMediaPlayer::mediaStatusChanged, this, &Mp4::handleMediaStatusChanged);
+    ui->comboBox->addItems({"0.5x", "1x", "1.5x", "2x", "2.5x", "3x"});
+    ui->comboBox->setCurrentIndex(1);
     back();
 }
 
@@ -43,6 +46,8 @@ void Mp4::back() {
     ui->home_button->show();
     ui->listWidget->show();
     ui->label->show();
+    ui->comboBox->hide();
+
 }
 
 void Mp4::play() {
@@ -59,6 +64,8 @@ void Mp4::play() {
     ui->repeat_button->show();
     ui->current_time_label->show();
     ui->total_time_label->show();
+    ui->comboBox->show();
+
 }
 
 
@@ -82,9 +89,12 @@ void Mp4::updateList() {
     ui->listWidget->clear();
     if (flashObj.updateFlashStatus() == false) {
         ui->label->setText("Insert a USB!");
+        ui->label->show();
+        ui->label_2->hide();
     }
     else {
         ui->label->clear();
+        ui->label->hide();
     }
     QString directoryPath = "/media/"+QString::fromStdString(flashObj.usbName);
 
@@ -95,14 +105,22 @@ void Mp4::updateList() {
     QStringList mp4Files = directory.entryList(QStringList() << "*.mp4", QDir::Files, QDir::Name);
     QStringList mkvFiles = directory.entryList(QStringList() << "*.mkv", QDir::Files, QDir::Name);
 
+    if(mp4Files.isEmpty()&&mkvFiles.isEmpty()&&(!flashObj.usbName.empty())){
+        ui->label_2->show();
+    }
+    else{
+        ui->label_2->hide();
+    }
     // Add sorted mp4 files to the QListWidget 
     foreach (const QString &mp4File, mp4Files) {
         QListWidgetItem *item = new QListWidgetItem(mp4File);
+        item->setForeground(QColor("white"));
         ui->listWidget->addItem(item);
     }
     // Add sorted mkv files to the QListWidget 
     foreach (const QString &mkvFile, mkvFiles) {
         QListWidgetItem *item = new QListWidgetItem(mkvFile);
+        item->setForeground(QColor("white"));
         ui->listWidget->addItem(item);
     }
 }
@@ -135,10 +153,12 @@ void Mp4::on_seek_forward_button_clicked() {
 
 
 void Mp4::updateProgressBar() {
+    int progress=0;
     if(player->duration() > 0) {
-        int progress = (player->position()*100)/player->duration();
+        progress = (player->position()*100)/player->duration();
         ui->horizontalSlider_duration->setValue(progress);
     }
+
     // show current time and total time in form HH:MM:SS format
     int currentTime = player->position()/1000;
     int totalTime = player->duration()/1000;
@@ -152,6 +172,7 @@ void Mp4::updateProgressBar() {
 
 void Mp4::on_seek_backward_button_clicked() {
     player->setPosition(player->position()-10000);
+
 }
 
 
@@ -176,5 +197,25 @@ void Mp4::on_horizontalSlider_duration_sliderReleased() {
 void Mp4::on_horizontalSlider_valueChanged(int value)
 {
 
+}
+
+void Mp4::handleMediaStatusChanged(QMediaPlayer::MediaStatus status){
+
+    if (status == QMediaPlayer::EndOfMedia) {
+            player->pause();
+            player->play();
+
+    }
+
+}
+
+
+
+
+
+void Mp4::on_comboBox_currentIndexChanged(int index)
+{
+    qreal speed = 0.5 + index * 0.5; // Convert combobox index to playback rate
+    player->setPlaybackRate(speed);
 }
 

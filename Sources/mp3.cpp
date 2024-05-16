@@ -7,6 +7,7 @@
 #include "QDebug"
 #include <QFileDialog>
 #include <QtMultimedia>
+#include <QRandomGenerator>
 
 Mp3::Mp3(MainWindow *parent)
     : QDialog(parent)
@@ -17,7 +18,9 @@ Mp3::Mp3(MainWindow *parent)
     timer = new QTimer(this);
     connect(player, &QMediaPlayer::positionChanged, this, &Mp3::updateProgressBar);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateList()));
+     connect(player, &QMediaPlayer::mediaStatusChanged, this, &Mp3::handleMediaStatusChanged);
     player->setVolume(ui->verticalSlider->value());
+    ui->label_2->hide();
     timer->start(1000);
 }
 
@@ -32,9 +35,12 @@ void Mp3::updateList() {
     ui->listWidget->clear();
     if (flashObj.updateFlashStatus() == false) {
         ui->label->setText("Insert a USB!");
+        ui->label->show();
+        ui->label_2->hide();
     }
     else {
         ui->label->clear();
+        ui->label->hide();
     }
     QString directoryPath = "/media/"+QString::fromStdString(flashObj.usbName);
 
@@ -44,9 +50,16 @@ void Mp3::updateList() {
     // Filter files by ".mp3" and sort them alphabetically
     QStringList mp3Files = directory.entryList(QStringList() << "*.mp3", QDir::Files, QDir::Name);
 
+    if(mp3Files.isEmpty()&&(!flashObj.usbName.empty())){
+        ui->label_2->show();
+    }
+    else{
+        ui->label_2->hide();
+    }
     // Add sorted mp3 files to the QListWidget
     foreach (const QString &mp3File, mp3Files) {
         QListWidgetItem *item = new QListWidgetItem(mp3File);
+        item->setForeground(QColor("white"));
         ui->listWidget->addItem(item);
     }
 
@@ -58,14 +71,21 @@ void Mp3::on_listWidget_itemClicked(QListWidgetItem *item) {
     QString filePath = "/media/"+QString::fromStdString(flashObj.usbName)+"/"+item->text();
     QUrl fileUrl = QUrl::fromLocalFile(filePath);
     player->setMedia(fileUrl);
+    ui->horizontalSlider->setValue(0);
     player->play();
     ui->start_stop_button->setChecked(true);
 }
 
 void Mp3::updateProgressBar() {
+
+    int progress=0;
     if(player->duration() > 0) {
-        int progress = (player->position()*100)/player->duration();
+        progress = (player->position()*100)/player->duration();
         ui->horizontalSlider->setValue(progress);
+    }
+    if(progress==100)
+    {
+        on_next_button_clicked();
     }
 }
 
@@ -126,5 +146,33 @@ void Mp3::on_repeat_button_clicked() {
 
 void Mp3::on_home_button_clicked() {
     mainWindowPtr->Back_Home();
+}
+
+void Mp3::handleMediaStatusChanged(QMediaPlayer::MediaStatus status)
+{
+    if(status == QMediaPlayer::EndOfMedia)
+    {
+        on_next_button_clicked();
+        player->play();
+        player->pause();
+
+    }
+
+
+}
+
+
+void Mp3::on_pushButton_clicked()
+{
+    int randomIndex = QRandomGenerator::global()->bounded(ui->listWidget->count());
+
+    // Play the song at the random index
+    if (randomIndex >= 0 && ui->listWidget->count()) {
+        QListWidgetItem *nextItem = ui->listWidget->item(randomIndex);
+        ui->listWidget->setCurrentItem(nextItem);
+        on_listWidget_itemClicked(nextItem);
+    } else {
+        qDebug() << "Invalid random index.";
+    }
 }
 

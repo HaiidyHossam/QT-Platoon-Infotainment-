@@ -41,6 +41,8 @@ private slots:
     void on_previous_button_clicked();
     void on_repeat_button_clicked();
     void on_home_button_clicked();
+    void handleMediaStatusChanged(QMediaPlayer::MediaStatus status);
+    void on_pushButton_clicked();
 };
 
 #endif // MP3_H

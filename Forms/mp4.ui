@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="contextMenuPolicy">
-    <enum>Qt::NoContextMenu</enum>
+    <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
    </property>
    <widget class="QPushButton" name="home_button">
     <property name="geometry">
@@ -38,10 +38,10 @@
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
+     <enum>Qt::FocusPolicy::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/icons/icons/home.png);</string>
@@ -65,8 +65,11 @@
       <height>431</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::StrongFocus</enum>
+    </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="title">
      <string/>
@@ -82,13 +85,13 @@
      </rect>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="pageStep">
      <number>1</number>
     </property>
     <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+     <enum>Qt::Orientation::Horizontal</enum>
     </property>
    </widget>
    <widget class="QLabel" name="current_time_label">
@@ -103,15 +106,14 @@
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
+     <enum>Qt::FocusPolicy::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);</string>
@@ -132,12 +134,11 @@
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);</string>
@@ -156,7 +157,7 @@
      </rect>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -165,7 +166,7 @@
      <number>50</number>
     </property>
     <property name="orientation">
-     <enum>Qt::Vertical</enum>
+     <enum>Qt::Orientation::Vertical</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="back_button">
@@ -178,10 +179,10 @@
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
+     <enum>Qt::FocusPolicy::NoFocus</enum>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/icons/icons/menu.png);</string>
@@ -204,13 +205,13 @@
     </property>
     <property name="font">
      <font>
-      <family>Ubuntu</family>
-      <pointsize>16</pointsize>
-      <italic>true</italic>
+      <family>Sans Serif</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
@@ -220,7 +221,7 @@ image: url(:/icons/icons/USB.png);</string>
      <string>Insert USB</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+     <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget">
@@ -233,10 +234,11 @@ image: url(:/icons/icons/USB.png);</string>
      </rect>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">background: transparent;
+font-size: 22px
 </string>
     </property>
    </widget>
@@ -250,14 +252,14 @@ image: url(:/icons/icons/USB.png);</string>
      </rect>
     </property>
     <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+     <enum>Qt::Orientation::Horizontal</enum>
     </property>
     <widget class="QPushButton" name="repeat_button">
      <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
+      <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/icons/icons/repeat.png);</string>
@@ -274,10 +276,10 @@ image: url(:/icons/icons/USB.png);</string>
     </widget>
     <widget class="QPushButton" name="seek_backward_button">
      <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
+      <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/icons/icons/forward.png);</string>
@@ -294,10 +296,10 @@ image: url(:/icons/icons/USB.png);</string>
     </widget>
     <widget class="QCheckBox" name="start_pause_button">
      <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
+      <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">
@@ -318,10 +320,10 @@ QCheckBox::indicator:checked {
     </widget>
     <widget class="QPushButton" name="seek_forward_button">
      <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
+      <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/icons/icons/backward.png);</string>
@@ -337,6 +339,37 @@ QCheckBox::indicator:checked {
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>330</y>
+      <width>241</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>No Mp4 Files</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>500</y>
+      <width>72</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>splitter</zorder>
    <zorder>home_button</zorder>
    <zorder>horizontalSlider_duration</zorder>
@@ -347,6 +380,8 @@ QCheckBox::indicator:checked {
    <zorder>groupBox</zorder>
    <zorder>listWidget</zorder>
    <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>comboBox</zorder>
   </widget>
  </widget>
  <resources/>
