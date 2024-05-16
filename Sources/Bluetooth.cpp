@@ -2,6 +2,7 @@
 #include "Headers/Bluetooth.h"
 #include "ui_Bluetooth.h"
 #include "Headers/mainwindow.h"
+#include <sstream>
 
 Bluetooth::Bluetooth(MainWindow *parent)
     : QDialog(parent)
@@ -17,14 +18,34 @@ Bluetooth::Bluetooth(MainWindow *parent)
         std::cerr << "Failed to open bluetoothctl process!" << std::endl;
         exit(EXIT_FAILURE);
     }
+    ui->bluetooth_state->setText("Bluetooth is disabled.");
 }
 
 Bluetooth::~Bluetooth()
 {
     closeBluetooth();
+    pclose(Bscript);
     delete ui;
 }
 
+std::string Bluetooth::execute(const char* cmd) {
+    std::array<char, 128> buffer;
+    std::string result;
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+    if (!pipe) {
+        throw std::runtime_error("popen() failed!");
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        result += buffer.data();
+    }
+    return result;
+}
+
+bool Bluetooth::isDeviceConnected(const std::string& macAddress) {
+    std::string command = "bluetoothctl info " + macAddress;
+    std::string result = execute(command.c_str());
+    return result.find("Connected: yes") != std::string::npos;
+}
 
 void Bluetooth::sendCommand(const char* command) {
     fprintf(btctlProcess, "%s\n", command);
@@ -36,56 +57,35 @@ void Bluetooth::initializeBluetooth() {
     sendCommand("power on");
     sendCommand("agent on");
     sendCommand("default-agent");
-    sendCommand("discovrable on");
+    sendCommand("discoverable on");
 }
 
 std::string Bluetooth::getConnectedDeviceName() {
-    // Run hcitool to get connected devices
-    FILE* hcitoolProcess = popen("hcitool con", "r");
-    if (!hcitoolProcess) {
-        std::cerr << "Failed to run hcitool!" << std::endl;
-        return "";
-    }
+    std::string command = "bluetoothctl devices";
+    std::string result = execute(command.c_str());
 
-    // Read output to find connected device MAC addresses
-    std::string connectedDeviceName;
-    char buffer[128];
-    if (fgets(buffer, sizeof(buffer), hcitoolProcess) != NULL) {
-        std::string line(buffer);
-        size_t pos = line.find("ACL");
+    // Parse the output to extract device MAC addresses and names
+    std::istringstream stream(result);
+    std::string line;
+    while (std::getline(stream, line)) {
+        std::size_t pos = line.find(' ');
         if (pos != std::string::npos) {
-            // Extract device MAC address from the line
-            size_t start = line.find_first_of(" ", pos + 4);
-            if (start != std::string::npos) {
-                size_t end = line.find_last_of(" ");
-                if (end != std::string::npos) {
-                    std::string macAddress = line.substr(start + 1, end - start);
-                    // Get the name of the connected device using the MAC address
-                    std::string command = "hcitool name " + macAddress;
-                    FILE* hcitoolNameProcess = popen(command.c_str(), "r");
-                    if (!hcitoolNameProcess) {
-                        std::cerr << "Failed to run hcitool name!" << std::endl;
-                        return "";
-                    }
+            std::string macAddress = line.substr(pos + 1, 17); // Extract MAC address
+            std::string deviceName = line.substr(pos + 19);    // Extract device name
 
-                    // Read output to get device name
-                    if (fgets(buffer, sizeof(buffer), hcitoolNameProcess) != NULL) {
-                        connectedDeviceName = buffer;
-                        // Remove newline character if present
-                        connectedDeviceName.erase(connectedDeviceName.find_last_not_of("\n") + 1);
-                    }
-                    pclose(hcitoolNameProcess);
-                }
+            // Check if the device is currently connected
+            if (isDeviceConnected(macAddress)) {
+                //std::cout << "Device MAC: " << macAddress << ", Name: " << deviceName << std::endl;
+                //ui->bluetooth_state->setText(QString::fromStdString(deviceName));
+                return deviceName;
             }
         }
     }
-
-    pclose(hcitoolProcess);
-    return connectedDeviceName;
+    return "";
 }
 
 void Bluetooth::disableBluetooth() {
-    sendCommand("power off");
+    sendCommand("power off");    
 }
 
 void Bluetooth::closeBluetooth() {
@@ -93,28 +93,28 @@ void Bluetooth::closeBluetooth() {
     pclose(btctlProcess);
 }
 
-void Bluetooth::on_Back_Home_clicked()
-{
+void Bluetooth::on_Back_Home_clicked() {
      mainWindowPtr->Back_Home();
 }
 
 void Bluetooth::update_connected_device() {
-    ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
+    if (getConnectedDeviceName().empty())
+        ui->bluetooth_state->setText("Bluetooth is enabled.\nConnect your device!");
+    else
+        ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
 }
 
-void Bluetooth::on_toggle_bluetooth_clicked()
-{
+void Bluetooth::on_toggle_bluetooth_clicked() {
     if (ui->toggle_bluetooth->isChecked()) {
         initializeBluetooth();
         ui->bluetooth_state->setText("Bluetooth is enabled.\nConnect your device!");
-        //timer->start(5000);
-
+        popen("bluetooth-script.py","r");
+        timer_bluetooth->start(1000);
     }
     else {
         disableBluetooth();
+        system("killall bluetooth-script.py");
+        timer_bluetooth->stop();
         ui->bluetooth_state->setText("Bluetooth is disabled.");
-        ui->bluetooth_state->setText(QString::fromStdString(getConnectedDeviceName()));
-
     }
 }
-

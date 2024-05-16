@@ -1,7 +1,6 @@
 #ifndef BLUETOOTH_H
 #define BLUETOOTH_H
 #include <cstdio>
-#include <cstdlib>
 #include <iostream>
 #include <QDialog>
 #include <QTimer>
@@ -24,19 +23,20 @@ public:
     void disableBluetooth();
     std::string getConnectedDeviceName();
     void closeBluetooth();
-    void update_connected_device();
-
 
 private slots:
     void on_Back_Home_clicked();
-
+    void update_connected_device();
     void on_toggle_bluetooth_clicked();
 
 private:
     QTimer *timer_bluetooth;
     Ui::Bluetooth *ui;
     FILE* btctlProcess;
+    FILE* Bscript;
     MainWindow *mainWindowPtr;
+    std::string execute(const char* cmd);
+    bool isDeviceConnected(const std::string& macAddress);
 };
 
 #endif // BLUETOOTH_H
