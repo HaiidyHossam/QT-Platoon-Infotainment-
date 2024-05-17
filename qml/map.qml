@@ -112,8 +112,15 @@ Rectangle {
         onMessageReceived_pos_signal: {
 
             console.log("postion has changed! ");
-            movingPoint.x = x * scaleFactor;
-            movingPoint.y = y * scaleFactor;
+            movingPoint.x = positions[0].x * scaleFactor;
+            movingPoint.y = positions[0].y * scaleFactor;
+
+            movingPoint.x = positions[1].x * scaleFactor;
+            movingPoint.y = positions[1].y * scaleFactor;
+
+
+
+
         }
     }
 
