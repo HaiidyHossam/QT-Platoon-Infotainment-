@@ -115,12 +115,6 @@ Rectangle {
             movingPoint.x = positions[0].x * scaleFactor;
             movingPoint.y = positions[0].y * scaleFactor;
 
-            movingPoint.x = positions[1].x * scaleFactor;
-            movingPoint.y = positions[1].y * scaleFactor;
-
-
-
-
         }
     }
 
