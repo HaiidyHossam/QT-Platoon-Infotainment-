@@ -59,20 +59,25 @@ void Mqtt_connection::onMessageReceived(const QByteArray &message, const QMqttTo
 
 
 
-        // Split the message into substrings based on the '.' delimiter
-        QStringList parts = msg.split('.');
 
-        if (parts.size() != 2) {
-            qDebug() << "Invalid message format";
-            return;
+        QStringList positionStrings = msg.split(',');
+
+        QVariantList positions;
+        for (const QString& posStr : positionStrings) {
+            QStringList coords = posStr.split('.');
+            if (coords.size() != 2) {
+                qDebug() << "Invalid position format: " << posStr;
+                continue;
+            }
+
+            QVariantMap pos;
+            pos["x"] = coords[0].toDouble();
+            pos["y"] = coords[1].toDouble();
+            positions.append(pos);
         }
 
-        // Convert the substrings to integers
-        x = parts[0].toInt();
-        y = parts[1].toInt();
 
-
-        emit messageReceived_pos_signal(x,y);
+        emit messageReceived_pos_signal(positions);
 
         qDebug("message recived: ");
         qDebug() << QString::fromUtf8(message);

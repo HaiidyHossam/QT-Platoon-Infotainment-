@@ -5,6 +5,12 @@
 #include <QtMqtt/QtMqtt>
 #include <QtMqtt/QMqttClient>
 #include <QQmlContext>
+#include <QList>
+
+struct Position {
+    int x;
+    int y;
+};
 
 
 class Mqtt_connection : public QObject
@@ -28,7 +34,7 @@ private:
 
 
 signals:
-    void messageReceived_pos_signal(int x, int y);
+    void messageReceived_pos_signal(QVariantList positions);
     void messageReceived_speed_signal(int speed);
     void messageReceived_rpm_signal(int rpm);
 
