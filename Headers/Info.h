@@ -2,6 +2,7 @@
 #define INFO_H
 
 #include <QDialog>
+#include "Headers/updatedialog.h"
 
 class MainWindow; // Forward declaration
 namespace Ui {
@@ -19,9 +20,12 @@ public:
 private slots:
     void on_Home_clicked();
 
+    void on_update_clicked();
+
 private:
     Ui::Info *ui;
     MainWindow *mainWindowPtr;
+    updateDialog *dialog;
 };
 
 #endif // INFO_H

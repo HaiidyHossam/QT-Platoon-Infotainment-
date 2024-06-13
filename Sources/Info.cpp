@@ -21,3 +21,9 @@ void Info::on_Home_clicked()
     mainWindowPtr->Back_Home();
 }
 
+
+void Info::on_update_clicked() {
+    dialog = new updateDialog(this) ;
+    dialog->exec();
+}
+

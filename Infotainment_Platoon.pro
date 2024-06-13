@@ -21,7 +21,8 @@ SOURCES += \
     Sources/mp3.cpp \
     Sources/mp4.cpp \
     Sources/mqtt_connection.cpp \
-    Sources/popNotify.cpp
+    Sources/popNotify.cpp \
+    Sources/updatedialog.cpp
 
 HEADERS += \
     Headers/Bluetooth.h \
@@ -35,7 +36,8 @@ HEADERS += \
     Headers/mp3.h \
     Headers/mp4.h \
     Headers/mqtt_connection.h \
-    Headers/popNotify.h
+    Headers/popNotify.h \
+    Headers/updatedialog.h
 
 FORMS += \
     Forms/Bluetooth.ui \
@@ -47,7 +49,8 @@ FORMS += \
     Forms/mainwindow.ui \
     Forms/mp3.ui \
     Forms/mp4.ui \
-    Forms/popNotify.ui
+    Forms/popNotify.ui \
+    Forms/updatedialog.ui
 
 RESOURCES += \
     Resources.qrc
