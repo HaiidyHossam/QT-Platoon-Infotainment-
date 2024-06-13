@@ -57,7 +57,8 @@
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/icons/home.png);</string>
+    <string notr="true">image: url(:/icons/icons/home.png);
+border: none; </string>
    </property>
    <property name="text">
     <string/>
@@ -69,58 +70,63 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter">
+  <widget class="QPushButton" name="Start_Camera">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>470</y>
-     <width>821</width>
-     <height>101</height>
+     <x>280</x>
+     <y>450</y>
+     <width>101</width>
+     <height>81</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
-   <widget class="QPushButton" name="Start_Camera">
-    <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
-    </property>
-    <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/icons/icons/cameraon.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Stop_Camera">
-    <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
-    </property>
-    <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/icons/icons/cameraoff.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/cameraon.png);
+border: none; </string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Stop_Camera">
+   <property name="geometry">
+    <rect>
+     <x>693</x>
+     <y>450</y>
+     <width>91</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/cameraoff.png);
+border: none; </string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
  <resources/>

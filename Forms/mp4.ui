@@ -44,7 +44,8 @@
      <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/icons/icons/home.png);</string>
+     <string notr="true">image: url(:/icons/icons/home.png);
+border: none; </string>
     </property>
     <property name="text">
      <string/>
@@ -191,7 +192,8 @@
      <enum>Qt::NoContextMenu</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/icons/icons/menu.png);</string>
+     <string notr="true">image: url(:/icons/icons/menu.png);
+border: none; </string>
     </property>
     <property name="text">
      <string/>
@@ -268,7 +270,8 @@ font-size: 22px
       <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/icons/icons/repeat.png);</string>
+      <string notr="true">image: url(:/icons/icons/repeat.png);
+border: none; </string>
      </property>
      <property name="text">
       <string/>
@@ -288,7 +291,8 @@ font-size: 22px
       <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/icons/icons/forward.png);</string>
+      <string notr="true">image: url(:/icons/icons/forward.png);
+border: none; </string>
      </property>
      <property name="text">
       <string/>
@@ -338,7 +342,8 @@ QCheckBox::indicator:checked {
       <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/icons/icons/backward.png);</string>
+      <string notr="true">image: url(:/icons/icons/backward.png);
+border: none; </string>
      </property>
      <property name="text">
       <string/>

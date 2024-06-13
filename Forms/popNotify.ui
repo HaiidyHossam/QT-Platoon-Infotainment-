@@ -49,7 +49,8 @@ border-color: rgb(4, 25, 216);</string>
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/icons/Mute.png);</string>
+    <string notr="true">image: url(:/icons/icons/Mute.png);
+border: none; </string>
    </property>
    <property name="text">
     <string/>

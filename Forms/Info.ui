@@ -32,7 +32,8 @@
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/icons/home.png);</string>
+    <string notr="true">image: url(:/icons/icons/home.png);
+border: none; </string>
    </property>
    <property name="text">
     <string/>
@@ -64,6 +65,31 @@
    </property>
    <property name="text">
     <string>QT Version: 5.15.8</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="update">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>310</y>
+     <width>161</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: none; </string>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>

@@ -29,7 +29,8 @@
     <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/icons/home.png);</string>
+    <string notr="true">image: url(:/icons/icons/home.png);
+border: none; </string>
    </property>
    <property name="text">
     <string/>
