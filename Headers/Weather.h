@@ -20,12 +20,11 @@ public:
     ~Weather();
 
 private slots:
-    void requestWeatherData();
+    void requestWeatherData(const QString &latitude, const QString &longitude);
     void displayWeatherData(const QMap<QString, QString> &weatherData);
     void saveWeatherData();
     void loadWeatherData();
-
-
+    void requestGeolocationData();
     void on_Back_Home_clicked();
 
 private:
@@ -36,6 +35,7 @@ private:
 };
 
 #endif // WEATHER_H
+
 
 
 

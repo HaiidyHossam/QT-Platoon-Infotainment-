@@ -1,4 +1,4 @@
-// Camera.cpp
+
 #include "Headers/Weather.h"
 #include "ui_Weather.h"
 #include <QNetworkAccessManager>
@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QSettings>
 #include "Headers/mainwindow.h"
+
 
 Weather::Weather(MainWindow *parent)
     : QDialog(parent)
@@ -21,8 +22,8 @@ Weather::Weather(MainWindow *parent)
     // Load weather data from local storage
     loadWeatherData();
 
-    // Request weather data
-    requestWeatherData();
+    requestGeolocationData();
+
 }
 
 Weather::~Weather()
@@ -31,18 +32,47 @@ Weather::~Weather()
 }
 
 
-
-void Weather::requestWeatherData()
+void Weather::requestGeolocationData()
 {
-    // Construct the URL for the weather API request
-    QString latitude = "30.0444";   // Cairo latitude
-    QString longitude = "31.2357";  // Cairo longitude
+    QString apiUrl = "https://ipapi.co/json/";
+
+    // Send a GET request to the geolocation API
+    QNetworkReply *reply = manager->get(QNetworkRequest(QUrl(apiUrl)));
+
+    connect(reply, &QNetworkReply::finished, [=]() {
+        // Check for errors
+        if (reply->error() != QNetworkReply::NoError) {
+            qDebug() << "Error:" << reply->errorString();
+            displayWeatherData(lastWeatherData); // Display cached data if geolocation fails
+            reply->deleteLater();
+            return;
+        }
+
+        // Read the response data
+        QByteArray responseData = reply->readAll();
+
+        // Parse the JSON response
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
+        QJsonObject jsonObject = jsonResponse.object();
+
+        // Extract latitude and longitude
+        QString latitude = QString::number(jsonObject["latitude"].toDouble());
+        QString longitude = QString::number(jsonObject["longitude"].toDouble());
+
+        requestWeatherData(latitude, longitude);
+
+        // Cleanup
+        reply->deleteLater();
+    });
+}
+
+void Weather::requestWeatherData(const QString &latitude, const QString &longitude)
+{
     QString apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m";
 
     // Send a GET request to the weather API
     QNetworkReply *reply = manager->get(QNetworkRequest(QUrl(apiUrl)));
 
-    // Connect the finished() signal to a lambda function to handle the response
     connect(reply, &QNetworkReply::finished, [=]() {
         // Check for errors
         if (reply->error() != QNetworkReply::NoError) {
@@ -90,7 +120,6 @@ void Weather::displayWeatherData(const QMap<QString, QString> &weatherData)
 
 void Weather::saveWeatherData()
 {
-
     QSettings settings("MyCompany", "MyApp");
     settings.beginGroup("WeatherData");
     settings.setValue("currentTemperature", lastWeatherData["currentTemperature"]);
@@ -100,14 +129,12 @@ void Weather::saveWeatherData()
 
 void Weather::loadWeatherData()
 {
-
     QSettings settings("MyCompany", "MyApp");
     settings.beginGroup("WeatherData");
     lastWeatherData["currentTemperature"] = settings.value("currentTemperature", "- °C").toString();
     lastWeatherData["currentWindSpeed"] = settings.value("currentWindSpeed", "- m/s").toString();
     settings.endGroup();
 }
-
 
 
 
