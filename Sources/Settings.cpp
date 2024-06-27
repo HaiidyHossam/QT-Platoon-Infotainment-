@@ -66,7 +66,8 @@ void Settings::on_Save_Changes_clicked()
         qDebug() << "Time set successfully";
     }
     prayer=new Prayer();
-    prayer->scheduleNextPrayer();
+    prayer->on_checkBox_Notify_stateChanged(1);
+
 
 }
 
@@ -75,3 +76,4 @@ void Settings::on_Back_Home_clicked()
 {
     mainWindowPtr->Back_Home();
 }
+
