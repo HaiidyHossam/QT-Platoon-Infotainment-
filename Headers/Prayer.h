@@ -47,4 +47,3 @@ private:
 };
 
 #endif // PRAYER_H
-

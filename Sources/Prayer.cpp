@@ -171,6 +171,7 @@ void Prayer::scheduleNextPrayer()
         }
 
         if (!found) {
+            // If no future prayer time found, schedule for the first prayer time of the next day
             QDate tomorrow = currentDateTime.date().addDays(1);
             nextPrayerDateTime.setDate(tomorrow);
             nextPrayerDateTime.setTime(m_prayerTimes.firstKey());
@@ -181,9 +182,11 @@ void Prayer::scheduleNextPrayer()
         nextPrayerDateTime = findNextPrayerTimeFromStoredData(currentDateTime);
     }
 
-    // Compare next prayer time with current time
-    if (nextPrayerDateTime.time() < currentDateTime.time()) {
-        nextPrayerDateTime = nextPrayerDateTime.addDays(1);
+    // Ensure that the next prayer is indeed after the current time
+    if (nextPrayerDateTime <= currentDateTime) {
+        QDate tomorrow = currentDateTime.date().addDays(1);
+        nextPrayerDateTime.setDate(tomorrow);
+        nextPrayerDateTime.setTime(m_prayerTimes.firstKey());
     }
 
     int msecToNextPrayer = currentDateTime.msecsTo(nextPrayerDateTime);
@@ -192,10 +195,10 @@ void Prayer::scheduleNextPrayer()
 
     // Schedule single-shot timer for the next prayer time
     QTimer::singleShot(msecToNextPrayer, [=]() {
-        qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
 
         // Check if notifications are enabled
         if (ui->checkBox_Notify->isChecked()) {
+            qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
             popNotify *popup = new popNotify(this);
             popup->exec(); // Show the widget as a modal dialog
         }
@@ -206,6 +209,7 @@ void Prayer::scheduleNextPrayer()
 
     qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
 }
+
 
 QDateTime Prayer::findNextPrayerTimeFromStoredData(const QDateTime &currentDateTime)
 {
@@ -273,7 +277,7 @@ void Prayer::loadSettings()
     QSettings settings("PrayerApp", "MyApp");
 
     // Load the state of the checkbox
-    bool notifyEnabled = settings.value("NotifyEnabled", false).toBool();
+    bool notifyEnabled = settings.value("NotifyEnabled", true).toBool();
     ui->checkBox_Notify->setChecked(notifyEnabled);
 }
 

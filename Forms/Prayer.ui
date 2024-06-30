@@ -159,17 +159,17 @@ border: none; </string>
   <widget class="QCheckBox" name="checkBox_Notify">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>230</x>
      <y>560</y>
-     <width>261</width>
+     <width>221</width>
      <height>24</height>
     </rect>
    </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/icons/shuffleOn.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

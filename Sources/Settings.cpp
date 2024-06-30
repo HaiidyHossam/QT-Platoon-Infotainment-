@@ -38,7 +38,7 @@ void Settings::on_Save_Changes_clicked()
     // Format the selected date and time
     QString timeText = dateTime.toString("yyyy-MM-dd hh:mm:ss");
 
-    QString disableNTPCmd = "timedatectl set-ntp false";
+    QString disableNTPCmd = "timedatectl set-ntp no";
     QString setTimeCmd = "timedatectl set-time \"" + timeText + "\"";
 
     // Convert QString to QByteArray and then to const char*
