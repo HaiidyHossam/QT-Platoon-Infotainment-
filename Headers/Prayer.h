@@ -2,6 +2,7 @@
 #define PRAYER_H
 #include "popNotify.h"
 #include <QDialog>
+#include <QTimer>
 class MainWindow; // Forward declaration
 namespace Ui {
 class Prayer;
@@ -42,6 +43,8 @@ private:
     popNotify *popup  ;
      bool m_dataFromApi;
     QMap<QTime, QString> m_prayerTimes;
+     QTimer *m_timer;
+
 
 
 };

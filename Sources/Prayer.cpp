@@ -18,6 +18,7 @@ Prayer::Prayer(MainWindow *parent)
     , mainWindowPtr(parent)
 {
     ui->setupUi(this);
+    m_timer = new QTimer(this);
 
     // Load saved settings
     loadSettings();
@@ -151,8 +152,15 @@ void Prayer::updatePrayerTimesFromLabels()
     m_prayerTimes.insert(QTime::fromString(isha.mid(isha.indexOf(":") + 2), "hh:mm"), "Isha");
 }
 
+
+
 void Prayer::scheduleNextPrayer()
 {
+    // If there is an existing timer running, stop it
+    if (m_timer->isActive()) {
+        m_timer->stop();
+    }
+
     QDateTime currentDateTime = QDateTime::currentDateTime();
     currentDateTime = currentDateTime.addSecs(-currentDateTime.time().second());
 
@@ -193,22 +201,30 @@ void Prayer::scheduleNextPrayer()
 
     qDebug() << "Current Date and Time:" << currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
 
-    // Schedule single-shot timer for the next prayer time
-    QTimer::singleShot(msecToNextPrayer, [=]() {
+    if (ui->checkBox_Notify->isChecked()) { // Check if notifications are still enabled
+        m_timer->singleShot(msecToNextPrayer, [=]() {
+            // Check the checkbox state again before proceeding
+            if (ui->checkBox_Notify->isChecked()) {
+                qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
+                popNotify *popup = new popNotify(this);
+                popup->exec(); // Show the widget as a modal dialog
 
-        // Check if notifications are enabled
-        if (ui->checkBox_Notify->isChecked()) {
-            qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
-            popNotify *popup = new popNotify(this);
-            popup->exec(); // Show the widget as a modal dialog
-        }
+                // Schedule the next prayer
+                scheduleNextPrayer();
+            } else {
+                qDebug() << "Notifications were disabled before execution.";
+            }
+        });
 
-        // Schedule the next prayer
-        scheduleNextPrayer();
-    });
-
-    qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
+        qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
+    } else {
+        qDebug() << "Notifications are disabled.";
+    }
 }
+
+
+
+
 
 
 QDateTime Prayer::findNextPrayerTimeFromStoredData(const QDateTime &currentDateTime)
@@ -293,11 +309,15 @@ void Prayer::on_checkBox_Notify_stateChanged(int state)
 {
     saveSettings(); // Save the state of the checkbox immediately
 
-    // Check if notifications are enabled
     if (state == Qt::Checked) {
         // If checked, schedule next prayer with notification
         scheduleNextPrayer();
     } else {
-        // If unchecked, do nothing (notifications are disabled)
+        // If unchecked, stop any scheduled notifications
+        m_timer->stop(); // Stop any existing timer if notifications are disabled
+
+        qDebug() << "Notifications disabled.";
     }
 }
+
+
