@@ -66,7 +66,7 @@ void Settings::on_Save_Changes_clicked()
         qDebug() << "Time set successfully";
     }
     prayer=new Prayer();
-    prayer->on_checkBox_Notify_stateChanged(1);
+  prayer-> scheduleNextPrayer();
 
 
 }
