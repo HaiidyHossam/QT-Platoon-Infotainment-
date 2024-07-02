@@ -33,6 +33,13 @@
         <file>icons/NoInternet.png</file>
         <file>icons/shuffleOn.png</file>
         <file>icons/shuffleOff.png</file>
+        <file>icons/Wind.png</file>
+        <file>icons/Temperature.png</file>
+        <file>icons/turned_off.png</file>
+        <file>icons/turned_on.png</file>
+        <file>icons/reject.png</file>
+        <file>icons/accept.png</file>
+        <file>icons/update.png</file>
     </qresource>
     <qresource prefix="/qml">
         <file>qml/map.qml</file>

@@ -42,7 +42,7 @@ border: none; </string>
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>240</x>
      <y>90</y>
      <width>731</width>
      <height>411</height>
@@ -79,6 +79,38 @@ border: none; </string>
      <string>text test</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>130</y>
+     <width>101</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/Temperature.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>340</y>
+     <width>101</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/icons/icons/Wind.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>

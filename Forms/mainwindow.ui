@@ -157,6 +157,7 @@ image: url(:/icons/icons/);
        <font>
         <family>Ubuntu</family>
         <pointsize>96</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
