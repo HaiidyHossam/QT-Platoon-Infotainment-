@@ -38,6 +38,8 @@ private slots:
 
 
 private:
+        bool m_popupShown;
+       bool m_isFetchingPrayerTimes;
     Ui::Prayer *ui;
     MainWindow *mainWindowPtr;
     popNotify *popup  ;
@@ -50,3 +52,6 @@ private:
 };
 
 #endif // PRAYER_H
+
+
+

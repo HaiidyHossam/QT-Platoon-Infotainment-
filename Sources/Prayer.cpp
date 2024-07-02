@@ -16,9 +16,12 @@ Prayer::Prayer(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::Prayer)
     , mainWindowPtr(parent)
+
 {
     ui->setupUi(this);
     m_timer = new QTimer(this);
+    m_popupShown=false;
+     m_isFetchingPrayerTimes=false;
 
     // Load saved settings
     loadSettings();
@@ -28,7 +31,6 @@ Prayer::Prayer(MainWindow *parent)
 
     loadPrayerTimes(); // Load prayer times from local storage
     m_dataFromApi = false; // Initial assumption is data is not from API
-    scheduleNextPrayer(); // Schedule the next prayer based on stored times
     getAndDisplayPrayerTimes();
 }
 
@@ -42,23 +44,28 @@ void Prayer::on_Back_clicked()
     mainWindowPtr->Back_Home();
 }
 
+
 void Prayer::getAndDisplayPrayerTimes()
 {
+    if (m_isFetchingPrayerTimes) {
+        return; // Exit if a request is already in progress
+    }
+
+    m_isFetchingPrayerTimes = true; // Set the flag to indicate fetching
+
     QString dateString = QDate::currentDate().toString("dd-MM-yyyy");
     QString apiUrl = "https://api.aladhan.com/v1/timingsByCity/" + dateString + "?city=Cairo&country=Egypt&method=8";
 
-    // Create a QNetworkAccessManager instance to make the request
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QUrl url(apiUrl);
     QNetworkRequest request(url);
 
-    // Make the GET request
     QNetworkReply *reply = manager->get(request);
 
-    // Connect the reply's finished signal to a lambda function to handle the response
     connect(reply, &QNetworkReply::finished, [=]() {
+        m_isFetchingPrayerTimes = false; // Reset the flag
+
         if (reply->error() == QNetworkReply::NoError) {
-            // Read response data
             QByteArray responseData = reply->readAll();
             QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
             QJsonObject jsonObj = jsonDoc.object();
@@ -78,7 +85,6 @@ void Prayer::getAndDisplayPrayerTimes()
                 QString maghribTime = timingsObj.value("Maghrib").toString();
                 QString ishaTime = timingsObj.value("Isha").toString();
 
-                // Output prayer times (for debugging)
                 qDebug() << "Prayer Times (from Aladhan API):";
                 qDebug() << "Fajr:" << fajrTime;
                 qDebug() << "Dhuhr:" << dhuhrTime;
@@ -86,10 +92,8 @@ void Prayer::getAndDisplayPrayerTimes()
                 qDebug() << "Maghrib:" << maghribTime;
                 qDebug() << "Isha:" << ishaTime;
 
-                // Update UI with fetched prayer times
                 updateUIWithPrayerTimes(fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime);
 
-                // Update m_prayerTimes with the fetched times
                 m_prayerTimes.clear();
                 m_prayerTimes.insert(QTime::fromString(fajrTime, "hh:mm"), "Fajr");
                 m_prayerTimes.insert(QTime::fromString(dhuhrTime, "hh:mm"), "Dhuhr");
@@ -97,26 +101,25 @@ void Prayer::getAndDisplayPrayerTimes()
                 m_prayerTimes.insert(QTime::fromString(maghribTime, "hh:mm"), "Maghrib");
                 m_prayerTimes.insert(QTime::fromString(ishaTime, "hh:mm"), "Isha");
 
-                // Save fetched prayer times (for future reference)
                 savePrayerTimes();
 
-                m_dataFromApi = true; // Data is from API
-
-                // Schedule the next prayer
-                scheduleNextPrayer();
+                m_dataFromApi = true;
+                if (!m_timer->isActive() && ui->checkBox_Notify->isChecked() ) {
+                    scheduleNextPrayer();
+                }
             } else {
-
                 qDebug() << "Invalid response code:" << responseCode;
             }
         } else {
             qDebug() << "Network Error:" << reply->errorString();
 
-            // If there's no network, display the last fetched prayer times
             displayLastPrayerTimes();
-            m_dataFromApi = false; // Data is not from API
+            m_dataFromApi = false;
+            if (!m_timer->isActive() && ui->checkBox_Notify->isChecked()) {
+                scheduleNextPrayer();
+            }
         }
 
-        // Clean up
         reply->deleteLater();
     });
 }
@@ -156,7 +159,6 @@ void Prayer::updatePrayerTimesFromLabels()
 
 void Prayer::scheduleNextPrayer()
 {
-    // If there is an existing timer running, stop it
     if (m_timer->isActive()) {
         m_timer->stop();
     }
@@ -168,7 +170,6 @@ void Prayer::scheduleNextPrayer()
     bool found = false;
 
     if (m_dataFromApi) {
-        // Use m_prayerTimes from API if available
         for (auto it = m_prayerTimes.constBegin(); it != m_prayerTimes.constEnd(); ++it) {
             QDateTime prayerDateTime(currentDateTime.date(), it.key());
             if (prayerDateTime > currentDateTime) {
@@ -179,18 +180,14 @@ void Prayer::scheduleNextPrayer()
         }
 
         if (!found) {
-            // If no future prayer time found, schedule for the first prayer time of the next day
             QDate tomorrow = currentDateTime.date().addDays(1);
             nextPrayerDateTime.setDate(tomorrow);
             nextPrayerDateTime.setTime(m_prayerTimes.firstKey());
         }
-
     } else {
-        // Use stored prayer times if not from API
         nextPrayerDateTime = findNextPrayerTimeFromStoredData(currentDateTime);
     }
 
-    // Ensure that the next prayer is indeed after the current time
     if (nextPrayerDateTime <= currentDateTime) {
         QDate tomorrow = currentDateTime.date().addDays(1);
         nextPrayerDateTime.setDate(tomorrow);
@@ -201,16 +198,21 @@ void Prayer::scheduleNextPrayer()
 
     qDebug() << "Current Date and Time:" << currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
 
-    if (ui->checkBox_Notify->isChecked()) { // Check if notifications are still enabled
+   if (ui->checkBox_Notify->isChecked()) { // Check if notifications are still enabled
         m_timer->singleShot(msecToNextPrayer, [=]() {
             // Check the checkbox state again before proceeding
             if (ui->checkBox_Notify->isChecked()) {
                 qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
+
+                // Show the pop-up notification
                 popNotify *popup = new popNotify(this);
                 popup->exec(); // Show the widget as a modal dialog
 
                 // Schedule the next prayer
-                scheduleNextPrayer();
+                m_popupShown = true;
+                if (!m_timer->isActive()) {
+                    scheduleNextPrayer();
+                }
             } else {
                 qDebug() << "Notifications were disabled before execution.";
             }
@@ -223,8 +225,20 @@ void Prayer::scheduleNextPrayer()
 }
 
 
+  /*  m_timer->singleShot(msecToNextPrayer, [=]() {
+        qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
+        if (!m_popupShown) {
+            popNotify *popup = new popNotify(this);
+            popup->exec();
+            m_popupShown = true;
+        }
+        if (!m_timer->isActive()) {
+            scheduleNextPrayer();
+        }
+    });
 
-
+    qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
+    } */
 
 
 QDateTime Prayer::findNextPrayerTimeFromStoredData(const QDateTime &currentDateTime)
@@ -311,13 +325,17 @@ void Prayer::on_checkBox_Notify_stateChanged(int state)
 
     if (state == Qt::Checked) {
         // If checked, schedule next prayer with notification
-        scheduleNextPrayer();
-    } else {
+        if (!m_timer->isActive()) {
+            scheduleNextPrayer();
+        } }
+     else {
         // If unchecked, stop any scheduled notifications
-        m_timer->stop(); // Stop any existing timer if notifications are disabled
-
+        if (m_timer->isActive()) {
+             m_timer->stop();
+        }
+        // Stop any existing timer if notifications are disabled
+    m_popupShown = false;
         qDebug() << "Notifications disabled.";
     }
 }
-
 
