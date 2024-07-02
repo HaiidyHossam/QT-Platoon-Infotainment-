@@ -23,12 +23,6 @@ Prayer::Prayer(MainWindow *parent)
     m_popupShown=false;
      m_isFetchingPrayerTimes=false;
 
-    // Load saved settings
-    loadSettings();
-
-    // Connect the checkbox state change to a slot
-    connect(ui->checkBox_Notify, &QCheckBox::stateChanged, this, &Prayer::on_checkBox_Notify_stateChanged);
-
     loadPrayerTimes(); // Load prayer times from local storage
     m_dataFromApi = false; // Initial assumption is data is not from API
     getAndDisplayPrayerTimes();
@@ -104,7 +98,7 @@ void Prayer::getAndDisplayPrayerTimes()
                 savePrayerTimes();
 
                 m_dataFromApi = true;
-                if (!m_timer->isActive() && ui->checkBox_Notify->isChecked() ) {
+                if (!m_timer->isActive() ) {
                     scheduleNextPrayer();
                 }
             } else {
@@ -115,7 +109,7 @@ void Prayer::getAndDisplayPrayerTimes()
 
             displayLastPrayerTimes();
             m_dataFromApi = false;
-            if (!m_timer->isActive() && ui->checkBox_Notify->isChecked()) {
+            if (!m_timer->isActive()) {
                 scheduleNextPrayer();
             }
         }
@@ -198,34 +192,9 @@ void Prayer::scheduleNextPrayer()
 
     qDebug() << "Current Date and Time:" << currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
 
-   if (ui->checkBox_Notify->isChecked()) { // Check if notifications are still enabled
-        m_timer->singleShot(msecToNextPrayer, [=]() {
-            // Check the checkbox state again before proceeding
-            if (ui->checkBox_Notify->isChecked()) {
-                qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
-
-                // Show the pop-up notification
-                popNotify *popup = new popNotify(this);
-                popup->exec(); // Show the widget as a modal dialog
-
-                // Schedule the next prayer
-                m_popupShown = true;
-                if (!m_timer->isActive()) {
-                    scheduleNextPrayer();
-                }
-            } else {
-                qDebug() << "Notifications were disabled before execution.";
-            }
-        });
-
-        qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
-    } else {
-        qDebug() << "Notifications are disabled.";
-    }
-}
 
 
-  /*  m_timer->singleShot(msecToNextPrayer, [=]() {
+   m_timer->singleShot(msecToNextPrayer, [=]() {
         qDebug() << "It's time for" << m_prayerTimes[nextPrayerDateTime.time()] << "Adhan!";
         if (!m_popupShown) {
             popNotify *popup = new popNotify(this);
@@ -238,7 +207,7 @@ void Prayer::scheduleNextPrayer()
     });
 
     qDebug() << "Next prayer scheduled at:" << nextPrayerDateTime.toString("yyyy-MM-dd hh:mm:ss");
-    } */
+    }
 
 
 QDateTime Prayer::findNextPrayerTimeFromStoredData(const QDateTime &currentDateTime)
@@ -302,40 +271,5 @@ void Prayer::displayLastPrayerTimes()
     loadPrayerTimes(); // Load and display last prayer times from storage
 }
 
-void Prayer::loadSettings()
-{
-    QSettings settings("PrayerApp", "MyApp");
 
-    // Load the state of the checkbox
-    bool notifyEnabled = settings.value("NotifyEnabled", true).toBool();
-    ui->checkBox_Notify->setChecked(notifyEnabled);
-}
-
-void Prayer::saveSettings()
-{
-    QSettings settings("PrayerApp", "MyApp");
-
-    // Save the state of the checkbox
-    settings.setValue("NotifyEnabled", ui->checkBox_Notify->isChecked());
-}
-
-void Prayer::on_checkBox_Notify_stateChanged(int state)
-{
-    saveSettings(); // Save the state of the checkbox immediately
-
-    if (state == Qt::Checked) {
-        // If checked, schedule next prayer with notification
-        if (!m_timer->isActive()) {
-            scheduleNextPrayer();
-        } }
-     else {
-        // If unchecked, stop any scheduled notifications
-        if (m_timer->isActive()) {
-             m_timer->stop();
-        }
-        // Stop any existing timer if notifications are disabled
-    m_popupShown = false;
-        qDebug() << "Notifications disabled.";
-    }
-}
 

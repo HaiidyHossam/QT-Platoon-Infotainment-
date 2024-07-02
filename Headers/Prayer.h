@@ -16,7 +16,6 @@ public:
     explicit Prayer(MainWindow *parent = nullptr);
     ~Prayer();
     void scheduleNextPrayer();
-    void on_checkBox_Notify_stateChanged(int arg1);
     void loadPrayerTimes();
     QDateTime findNextPrayerTimeFromStoredData(const QDateTime &currentDateTime);
     void updatePrayerTimesFromLabels();
@@ -31,8 +30,7 @@ public:
     void savePrayerTimes();
 private slots:
     void on_Back_clicked();
-    void loadSettings();
-    void saveSettings();
+
 
 
 
