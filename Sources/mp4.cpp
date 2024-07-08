@@ -194,10 +194,6 @@ void Mp4::on_horizontalSlider_duration_sliderReleased() {
 }
 
 
-void Mp4::on_horizontalSlider_valueChanged(int value)
-{
-
-}
 
 void Mp4::handleMediaStatusChanged(QMediaPlayer::MediaStatus status){
 

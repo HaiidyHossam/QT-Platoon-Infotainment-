@@ -143,55 +143,6 @@ border: none; </string>
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>250</y>
-     <width>341</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Ubuntu</family>
-     <pointsize>12</pointsize>
-     <italic>false</italic>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>Enable Prayer Notification</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="checkBox_Notify">
-   <property name="geometry">
-    <rect>
-     <x>760</x>
-     <y>280</y>
-     <width>131</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-QCheckBox::indicator:unchecked {
-    image: url(:/icons/icons/turned_off.png);
-}
-
-QCheckBox::indicator:checked {
-    image: url(:/icons/icons/turned_on.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

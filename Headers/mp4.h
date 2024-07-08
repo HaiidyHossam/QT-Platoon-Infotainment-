@@ -40,7 +40,6 @@ private slots:
     void on_horizontalSlider_duration_sliderReleased();
     void updateProgressBar();
 
-    void on_horizontalSlider_valueChanged(int value);
     void handleMediaStatusChanged(QMediaPlayer::MediaStatus status);
 
 

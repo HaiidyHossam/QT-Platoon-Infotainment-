@@ -9,8 +9,6 @@ public:
     std::string usbName;
     Flash();
     bool updateFlashStatus(void);
-    void listmp3();
-    void listmp4();
 private:
     bool isMounted = false;
     int mountUSB ();

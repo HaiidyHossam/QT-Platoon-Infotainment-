@@ -46,12 +46,21 @@
      <height>81</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">border: none; 
 image: url(:/icons/icons/accept.png);</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="reject_button">
@@ -63,12 +72,21 @@ image: url(:/icons/icons/accept.png);</string>
      <height>81</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">border: none; 
 image: url(:/icons/icons/reject.png);</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
