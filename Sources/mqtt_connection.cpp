@@ -45,6 +45,95 @@ void Mqtt_connection::subscribe(QString topic){
 
 
 
+QString Mqtt_connection::formatCoordinates(const QByteArray &jsonData){
+
+    // Parse the QByteArray as a JSON array of arrays
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parseError);
+
+    if (parseError.error != QJsonParseError::NoError) {
+        qDebug() << "Error parsing JSON:" << parseError.errorString();
+        return QString();
+    }
+
+    QJsonArray outerArray = doc.array();
+    QString formattedCoordinates;
+
+    // Iterate through each inner array
+    for (int i = 0; i < outerArray.size(); ++i) {
+        QJsonArray innerArray = outerArray[i].toArray();
+
+        // Extract x, y coordinates (assuming they are the first two elements)
+        if (innerArray.size() >= 2) {
+            int x = innerArray.at(0).toInt();
+            int y = innerArray.at(1).toInt();
+
+            // Format and append to the result string
+            formattedCoordinates.append(QString::number(x) + "." + QString::number(y));
+
+            // Add comma separator if not the last element
+            if (i < outerArray.size() - 1)
+                formattedCoordinates.append(",");
+        }
+     }
+
+    qDebug() << formattedCoordinates;
+
+    return formattedCoordinates;
+
+
+}
+
+
+int Mqtt_connection::extractSpeed(const QByteArray &jsonData){
+
+    // Parse the QByteArray as a JSON array of arrays
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parseError);
+
+    if (parseError.error != QJsonParseError::NoError) {
+        qDebug() << "Error parsing JSON:" << parseError.errorString();
+        return -1; // Error condition
+    }
+
+    QJsonArray outerArray = doc.array();
+
+    // Extract speed from the first inner array (assuming speed is the fourth element)
+    if (outerArray.size() > 0) {
+        QJsonArray firstArray = outerArray[0].toArray();
+        if (firstArray.size() >= 4) {
+            int speed = firstArray.at(3).toInt();
+            return speed;
+        }
+    }
+
+    return -1; // Error condition or no speed found
+
+
+}
+
+
+
+double Mqtt_connection::extractThrottle(const QByteArray &jsonData){
+
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+
+    if (doc.isNull() || !doc.isArray()) {
+        qWarning() << "Invalid JSON data or not an array";
+        return -1.0; // Handle the error as appropriate
+    }
+
+    QJsonArray array = doc.array();
+    if (array.isEmpty() || !array.at(0).isDouble()) {
+        qWarning() << "Array is empty or first element is not a numeric value";
+        return -1.0; // Handle the error as appropriate
+    }
+
+    return array.at(0).toDouble();
+
+
+}
+
 void Mqtt_connection::onMessageReceived(const QByteArray &message, const QMqttTopicName &topic)
 {
 
@@ -53,14 +142,19 @@ void Mqtt_connection::onMessageReceived(const QByteArray &message, const QMqttTo
     QString topic_str = topic.name();
 
 
-    QString msg = QString::fromUtf8(message);
-
-    if(topic_str ==  "posx66"){
 
 
 
+    if(topic_str == "sim/sensors"){
 
-        QStringList positionStrings = msg.split(',');
+
+        QString coords = formatCoordinates(message);
+        speed = extractSpeed(message);
+
+
+
+
+        QStringList positionStrings = coords.split(',');
 
         QVariantList positions;
         for (const QString& posStr : positionStrings) {
@@ -81,28 +175,42 @@ void Mqtt_connection::onMessageReceived(const QByteArray &message, const QMqttTo
 
         qDebug("message recived: ");
         qDebug() << QString::fromUtf8(message);
-    }
 
 
-    if(topic_str == "speedx66"){
-
-        speed = msg.toInt();
 
         emit messageReceived_speed_signal(speed);
 
-        qDebug() << "<recived:" << speed;
+        qDebug() << "<recived:" << speed	;
 
-    }
+    }else if(topic_str == "trgt/01/actions"){
 
-    if(topic_str == "rpmx66"){
 
-        rpm = msg.toInt();
+
+        double throttle = extractThrottle(message);
+
+
+
+        qDebug("message recived: ");
+        qDebug() << QString::fromUtf8(message);
+
+
+        qDebug()<< throttle;
+
+        rpm = throttle * 5000;
 
         emit messageReceived_rpm_signal(rpm);
 
         qDebug() <<"rpm: "<< rpm;
+        }else{qDebug()<< "format error";}
 
-    }
+
+
+
+
+
+
+
+
 
 
 }
@@ -116,9 +224,9 @@ void Mqtt_connection::onConnected()
 
 
     // I have to put sub in here because connecting is async and takes time, if this was in main the clinet will fail to sub due to unestaplished connection, waiting for solution
-    subscribe("posx66");
-    subscribe("speedx66");
-    subscribe("rpmx66");
+
+    subscribe("sim/sensors");
+    subscribe("trgt/01/actions");
 
 }
 

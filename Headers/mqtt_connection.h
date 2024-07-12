@@ -5,6 +5,8 @@
 #include <QtMqtt/QtMqtt>
 #include <QtMqtt/QMqttClient>
 #include <QQmlContext>
+#include <QJsonDocument>
+#include <QJsonArray>
 #include <QList>
 
 struct Position {
@@ -26,12 +28,16 @@ public:
     void subscribe(QString topic);
 
 
-private:
 
+private:
     QMqttClient  *m_client;
 
     int QOS;
 
+    QString formatCoordinates(const QByteArray &jsonData);
+    int extractSpeed(const QByteArray &jsonData);
+
+    double extractThrottle(const QByteArray &jsonData);
 
 signals:
     void messageReceived_pos_signal(QVariantList positions);
